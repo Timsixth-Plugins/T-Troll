@@ -1,0 +1,6 @@
+name: T-Troll
+version: 1.2
+author: timsixth
+main: me.timsixth.troll.Main
+commands:
+  troll:
