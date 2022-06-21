@@ -1,7 +1,7 @@
 permission: 'timsixth.troll'
 guiname: '&9&lTimsixthTroll'
 fakeadmin_format: '&c&lAdmin &f{NICK} &8>> &7{MESSAGE}'
-fakeop_format: '&7&r[Server] Opped {NICK}'
+fakeop_format: '&7[Console: Opped {NICK}]'
 power_explosion: 2
 messages:
   correctuse: '&cCorrect use: /troll <player>'
@@ -10,9 +10,9 @@ messages:
   adminnow: '&aYou are admin now! Congratulations!'
   gaveadmin: '&eYou gave fake admin to {NICK}'
   gaveop: '&eYou gave fake op to {NICK}'
-  frozeplayer: '&eYou froze the player'
-  unfreeze: '&eYou unfroze the player'
-  lauchedplyaer: '&eYou luanched the player in to cosmos'
+  frozeplayer: '&eYou have just frozen the player'
+  unfreeze: '&eYou have just unfrozen the player'
+  lauchedplyaer: '&eYou lunched the player in to cosmos'
   sendcrash: '&eYou sent fake crash to player'
   offlineplayer: '&cThis player is offline'
   fakeban: '&cYou are banned from this server :('
@@ -22,3 +22,6 @@ messages:
   spawnwater: '&eYou spawned water under the player'
   spawnlava: '&eYou spawned lava under the player'
   spawnzombie: '&eYou spawned zombie in the player location'
+  spawnarrow: '&eYou summoned arrows above the player''s head'
+  strikelightning: '&eYou stroked the player with lightning'
+  poisoned: '&eYou poisoned your victim'

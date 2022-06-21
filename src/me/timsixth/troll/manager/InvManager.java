@@ -23,8 +23,12 @@ public class InvManager {
 		ItemStack anvil = ItemUtil.createItem(new ItemStack(Material.ANVIL),"&eWill spawn anvil above the player");
 		ItemStack lavaBucket = ItemUtil.createItem(new ItemStack(Material.LAVA_BUCKET),"&eSpawns lava under the player");
 		ItemStack waterBucket = ItemUtil.createItem(new ItemStack(Material.WATER_BUCKET),"&eSpawns water under the player");
-		ItemStack zombieMonsterEgg = ItemUtil.createItem(new ItemStack(Material.MONSTER_EGG,1,(short) 54),"&eYou spawned zombie in the player location");
-		
+		ItemStack zombieMonsterEgg = ItemUtil.createItem(new ItemStack(Material.MONSTER_EGG,1,(short) 54),"&eSpawns a zombie at the player location");
+		ItemStack arrows = ItemUtil.createItem(new ItemStack(Material.ARROW),"&eSpawns few arrows above the player (*)");
+		ItemStack lightning = ItemUtil.createItem(new ItemStack(Material.FLINT_AND_STEEL),"&eStrikes the player with lightning (*)");
+		ItemStack poisonedPotato = ItemUtil.createItem(new ItemStack(Material.POISONOUS_POTATO),"&eMake your victim suffer from poison (*)");
+
+
 		inv.setItem(0, tnt);
 		inv.setItem(1, fakeAdmin);
 		inv.setItem(2, fakeOp);
@@ -37,6 +41,9 @@ public class InvManager {
 		inv.setItem(9,lavaBucket);
 		inv.setItem(10,waterBucket);
 		inv.setItem(11,zombieMonsterEgg);
+		inv.setItem(12,arrows);
+		inv.setItem(13,lightning);
+		inv.setItem(14,poisonedPotato);
 
 		return inv;
 	}

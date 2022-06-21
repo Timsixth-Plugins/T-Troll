@@ -8,14 +8,16 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
+
+import java.util.ArrayList;
 
 public class InventoryClickListener implements Listener {
 
@@ -26,7 +28,7 @@ public class InventoryClickListener implements Listener {
 	}
 
 	@EventHandler
-	public void onClick(InventoryClickEvent event) {
+	public void onClick(InventoryClickEvent event) throws InterruptedException {
 		if (event.getView().getTitle().equalsIgnoreCase(ConfigFile.GUI_NAME)) {
 			if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) {
 				return;
@@ -158,6 +160,7 @@ public class InventoryClickListener implements Listener {
 					break;
 				case 10:
 					setMaterial(other, Material.WATER, player, ConfigFile.SPAWN_WATER, event);
+
 					break;
 				case 11:
 					if (other != null) {
@@ -170,6 +173,33 @@ public class InventoryClickListener implements Listener {
 						player.sendMessage(ConfigFile.OFFLINEPLAYER);
 					}
 					break;
+				case 12:
+
+					Location summonLocation = other.getLocation().add(0.0,6,0.0);
+					for (int i = 0; i < 5; i++) {
+						summonLocation.getWorld().spawnEntity(summonLocation.add(0,i,0), EntityType.ARROW);
+					}
+					player.sendMessage(ConfigFile.SPAWN_ARROW);
+					event.setCancelled(true);
+
+					break;
+				case 13:
+
+					other.getWorld().strikeLightning(other.getLocation());
+					//
+					player.sendMessage(ConfigFile.STRIKE_LIGHTNING);
+					event.setCancelled(true);
+
+					break;
+				case 14:
+
+					other.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 200, 0, true));
+
+					player.sendMessage(ConfigFile.POISONED);
+					event.setCancelled(true);
+
+					break;
+
 			default:
 				event.setCancelled(true);
 				break;
@@ -180,8 +210,18 @@ public class InventoryClickListener implements Listener {
 
 	private void setMaterial(Player other, Material material, Player player, String message, InventoryClickEvent event) {
 		if (other != null) {
-			Block blockUp = other.getLocation().getBlock().getRelative(BlockFace.DOWN);
-			blockUp.setType(material);
+			Block BlockBelow = other.getLocation().getBlock().getRelative(BlockFace.DOWN);
+			Block BlockBelow2 = other.getLocation().subtract(1,0,0).getBlock().getRelative(BlockFace.DOWN);
+			Block BlockBelow3 = other.getLocation().subtract(0,0,1).getBlock().getRelative(BlockFace.DOWN);
+			Block BlockBelow4 = other.getLocation().add(1,0,0).getBlock().getRelative(BlockFace.DOWN);
+			Block BlockBelow5 = other.getLocation().add(0,0,1).getBlock().getRelative(BlockFace.DOWN);
+
+			BlockBelow.setType(material);
+			BlockBelow2.setType(material);
+			BlockBelow3.setType(material);
+			BlockBelow4.setType(material);
+			BlockBelow5.setType(material);
+
 			player.sendMessage(message);
 			event.setCancelled(true);
 		}else {

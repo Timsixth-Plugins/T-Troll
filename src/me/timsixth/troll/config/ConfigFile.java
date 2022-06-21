@@ -29,4 +29,9 @@ public class ConfigFile {
 	public static final String SPAWN_WATER = ChatUtil.chatColor(Main.getMain().getConfig().getString("messages.spawnwater"));
 	public static final String SPAWN_LAVA = ChatUtil.chatColor(Main.getMain().getConfig().getString("messages.spawnlava"));
 	public static final String SPAWN_ZOMBIE = ChatUtil.chatColor(Main.getMain().getConfig().getString("messages.spawnzombie"));
+	public static final String SPAWN_ARROW = ChatUtil.chatColor(Main.getMain().getConfig().getString("messages.spawnarrow"));
+	public static final String STRIKE_LIGHTNING = ChatUtil.chatColor(Main.getMain().getConfig().getString("messages.strikelightning"));
+	public static final String POISONED = ChatUtil.chatColor(Main.getMain().getConfig().getString("messages.poisoned"));
+
+
 }
