@@ -1,6 +1,7 @@
 package me.timsixth.troll.listener;
 
 import me.timsixth.troll.manager.UserManager;
+import me.timsixth.troll.model.Troll;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,16 +19,14 @@ public class PlayerQuitListener implements Listener {
 	public void onQuit(PlayerQuitEvent event) {
 		Player player = event.getPlayer();
 
-		if (userManager.containsPlayer(player)) {
-			userManager.removePlayer(player);
+		if (userManager.getTrollBySenderUuid(player.getUniqueId()) != null){
+			Troll troll = userManager.getTrollBySenderUuid(player.getUniqueId());
+			userManager.removeTroll(troll);
+			return;
 		}
-
-		if (userManager.isFrozen(player)) {
-			userManager.unFreeze(player);
-		}
-
-		if (userManager.isFakeAdmin(player)) {
-			userManager.removeFakeAdmin(player);
+		if (userManager.getTrollByVictimUuid(player.getUniqueId()) != null){
+			Troll troll = userManager.getTrollByVictimUuid(player.getUniqueId());
+			userManager.removeTroll(troll);
 		}
 	}
 }

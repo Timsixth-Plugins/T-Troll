@@ -3,6 +3,8 @@ package me.timsixth.troll.command;
 import me.timsixth.troll.config.ConfigFile;
 import me.timsixth.troll.manager.InvManager;
 import me.timsixth.troll.manager.UserManager;
+import me.timsixth.troll.model.Troll;
+import me.timsixth.troll.model.TrolledUserProperties;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -32,23 +34,15 @@ public class TrollCommand implements CommandExecutor {
 				player.sendMessage(ConfigFile.CORRECT_USE);
 				return true;
 			} else if (args.length == 1) {
-				if (!userManager.containsPlayer(player)) {
-					Player other = Bukkit.getPlayerExact(args[0]);
-					if (other != null) {
-						userManager.addPlayer(player, other);
-						player.openInventory(invManager.showTrollingInventory());
-					} else {
-						player.sendMessage(ConfigFile.OFFLINEPLAYER);
-					}
+				Player other = Bukkit.getPlayerExact(args[0]);
+				if (userManager.trollExists(userManager.getTrollBySenderUuid(player.getUniqueId()))) {
+					userManager.removeTroll(userManager.getTrollBySenderUuid(player.getUniqueId()));
+				}
+				if (other != null) {
+					userManager.createNewTroll(new Troll(player.getUniqueId(), other.getUniqueId(), new TrolledUserProperties()));
+					player.openInventory(invManager.showTrollingInventory());
 				} else {
-					userManager.removePlayer(player);
-					Player other = Bukkit.getPlayerExact(args[0]);
-					if (other != null) {
-						userManager.addPlayer(player, other);
-						player.openInventory(invManager.showTrollingInventory());
-					} else {
-						player.sendMessage(ConfigFile.OFFLINEPLAYER);
-					}
+					player.sendMessage(ConfigFile.OFFLINEPLAYER);
 				}
 				return true;
 			}

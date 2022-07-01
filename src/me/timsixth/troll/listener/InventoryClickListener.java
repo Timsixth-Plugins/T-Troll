@@ -3,6 +3,7 @@ package me.timsixth.troll.listener;
 import me.timsixth.troll.Main;
 import me.timsixth.troll.config.ConfigFile;
 import me.timsixth.troll.manager.UserManager;
+import me.timsixth.troll.model.TrolledUserProperties;
 import me.timsixth.troll.util.ChatUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -15,7 +16,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -26,11 +26,12 @@ import java.util.Random;
 public class InventoryClickListener implements Listener {
 
     private final UserManager userManager;
+    private final Main main;
 
-    public InventoryClickListener(UserManager userManager) {
+    public InventoryClickListener(Main main,UserManager userManager) {
         this.userManager = userManager;
+        this.main = main;
     }
-
     @EventHandler
     public void onClick(InventoryClickEvent event) {
         if (event.getView().getTitle().equalsIgnoreCase(ConfigFile.GUI_NAME)) {
@@ -38,7 +39,8 @@ public class InventoryClickListener implements Listener {
                 return;
             }
             Player player = (Player) event.getWhoClicked();
-            Player other = Bukkit.getPlayer(userManager.getPlayer(player));
+            TrolledUserProperties user = userManager.getTrollBySenderUuid(player.getUniqueId()).getTrolledUser();
+            Player other = Bukkit.getPlayer(userManager.getTrollBySenderUuid(player.getUniqueId()).getVictimUuid());
 
             switch (event.getRawSlot()) {
                 case 0:
@@ -50,14 +52,13 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 1:
                     if (isPlayerOnline(other, player, event)) {
-                        if (!userManager.isFakeAdmin(other)) {
-                            userManager.giveFakeAdmin(other);
+                        if (!user.isFakeAdmin()) {
+                            user.setFakeAdmin(true);
                             other.sendMessage(ConfigFile.ADMIN_NOW);
                             String msg = ConfigFile.GAVE_ADMIN.replace("{NICK}", other.getName());
                             player.sendMessage(msg);
                         } else {
-                            userManager.removeFakeAdmin(other);
-                            userManager.giveFakeAdmin(other);
+                            user.setFakeAdmin(false);
                             other.sendMessage(ConfigFile.ADMIN_NOW);
                             String msg = ConfigFile.GAVE_ADMIN.replace("{NICK}", other.getName());
                             player.sendMessage(msg);
@@ -76,11 +77,11 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 3:
                     if (isPlayerOnline(other, player, event)) {
-                        if (!userManager.isFrozen(other)) {
-                            userManager.freezePlayer(other);
+                        if (!user.isFrozen()) {
+                            user.setFrozen(true);
                             player.sendMessage(ConfigFile.FREZZED_PLAYER);
                         } else {
-                            userManager.unFreeze(other);
+                            user.setFrozen(false);
                             player.sendMessage(ConfigFile.UNFREEZED);
                         }
                         event.setCancelled(true);
@@ -186,50 +187,51 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 17:
                     if (isPlayerOnline(other, player, event)) {
-
-                        userManager.savePlayerExp(other);
-                        other.setTotalExperience(0);
-
+                        user.setExp(other.getExp());
+                        user.setLevel(other.getLevel());
+                        other.setLevel(0);
+                        other.setExp(0);
                         new BukkitRunnable() {
                             @Override
                             public void run() {
-                                userManager.setPlayerExp(other);
+                                other.setLevel(user.getLevel());
+                                other.setExp(user.getExp());
                             }
-                        }.runTaskLater(Main.getPlugin(Main.class), 10 * 20L);
+                        }.runTaskLater(main, 10 * 20L);
 
                         player.sendMessage(ConfigFile.FAKE_EXP);
                         event.setCancelled(true);
                     }
                     break;
-                case 18:
-                    if (isPlayerOnline(other, player, event)) {
-                        other.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 100, true));
-
-                        player.sendMessage(ConfigFile.SPEED);
-                        event.setCancelled(true);
-                    }
-                    break;
-                case 19:
-                    if (isPlayerOnline(other, player, event)) {
-                        Location location = other.getLocation();
-                        other.playSound(location, Sound.GHAST_SCREAM2, 7.0F, 1.0F);
-
-                        player.sendMessage(ConfigFile.SCARE);
-                        event.setCancelled(true);
-                    }
-                    break;
-                case 20:
-                    if (isPlayerOnline(other, player, event)) {
-                        Location location = other.getLocation();
-                        Random rand = new Random();
-
-                        Location location2 = location.add(rand.nextInt(21), 0.0, rand.nextInt(21));
-                        other.teleport(location2);
-
-                        player.sendMessage(ConfigFile.TELEPORT);
-                        event.setCancelled(true);
-                    }
-                    break;
+//                case 18:
+//                    if (isPlayerOnline(other, player, event)) {
+//                        other.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 100, true));
+//
+//                        player.sendMessage(ConfigFile.SPEED);
+//                        event.setCancelled(true);
+//                    }
+//                    break;
+//                case 19:
+//                    if (isPlayerOnline(other, player, event)) {
+//                        Location location = other.getLocation();
+//                        other.playSound(location, Sound.GHAST_SCREAM2, 7.0F, 1.0F);
+//
+//                        player.sendMessage(ConfigFile.SCARE);
+//                        event.setCancelled(true);
+//                    }
+//                    break;
+//                case 20:
+//                    if (isPlayerOnline(other, player, event)) {
+//                        Location location = other.getLocation();
+//                        Random random = new Random();
+//
+//                        Location location2 = location.add(random.nextInt(21), 0.0, random.nextInt(21));
+//                        other.teleport(location2);
+//
+//                        player.sendMessage(ConfigFile.TELEPORT);
+//                        event.setCancelled(true);
+//                    }
+//                    break;
                 default:
                     event.setCancelled(true);
                     break;

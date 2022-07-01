@@ -1,65 +1,35 @@
 package me.timsixth.troll.manager;
 
-import org.bukkit.entity.Player;
+import me.timsixth.troll.model.Troll;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class UserManager {
+    private final List<Troll> trolls = new ArrayList<>();
 
-    private final Map<UUID, UUID> otherPlayers = new HashMap<>();
-    private final List<UUID> fakeAdmins = new ArrayList<>();
-    private final List<UUID> frozenPlayers = new ArrayList<>();
-
-    private final Map<UUID, Integer> fakeExp = new HashMap<>();
-
-
-    public void savePlayerExp(Player player) { fakeExp.put(player.getUniqueId(), player.getTotalExperience()); }
-    public int getPrevPlayerExp(Player player) { return fakeExp.get(player.getUniqueId()); }
-    public void setPlayerExp(Player player) { player.setTotalExperience(getPrevPlayerExp(player)); }
-
-    public Map<UUID, Integer> getFakeExp() {
-        return fakeExp;
+    public void createNewTroll(Troll troll){
+        trolls.add(troll);
+    }
+    public boolean trollExists(Troll troll){
+        return trolls.contains(troll);
     }
 
-    public void addPlayer(Player sender, Player other) {
-        otherPlayers.put(sender.getUniqueId(), other.getUniqueId());
+    public void removeTroll(Troll troll){
+        trolls.remove(troll);
     }
 
-    public void removePlayer(Player sender) {
-        otherPlayers.remove(sender.getUniqueId(), null);
+    public Troll getTrollBySenderUuid(UUID uuid){
+        return trolls.stream()
+                .filter(troll -> troll.getSenderUuid().equals(uuid))
+                .findAny()
+                .orElse(null);
     }
-
-    public boolean containsPlayer(Player player) {
-        return otherPlayers.containsKey(player.getUniqueId());
+    public Troll getTrollByVictimUuid(UUID uuid){
+        return trolls.stream()
+                .filter(trolledUser -> trolledUser.getVictimUuid().equals(uuid))
+                .findAny()
+                .orElse(null);
     }
-
-    public UUID getPlayer(Player sender) {
-        return otherPlayers.get(sender.getUniqueId());
-    }
-
-    public void freezePlayer(Player player) {
-        frozenPlayers.add(player.getUniqueId());
-    }
-
-    public void unFreeze(Player player) {
-        frozenPlayers.remove(player.getUniqueId());
-    }
-
-    public boolean isFrozen(Player player) {
-        return frozenPlayers.contains(player.getUniqueId());
-    }
-
-    public void giveFakeAdmin(Player player) {
-        fakeAdmins.add(player.getUniqueId());
-    }
-
-    public void removeFakeAdmin(Player player) {
-        fakeAdmins.remove(player.getUniqueId());
-    }
-
-    public boolean isFakeAdmin(Player player) {
-        return fakeAdmins.contains(player.getUniqueId());
-    }
-
-
 }
