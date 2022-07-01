@@ -10,6 +10,17 @@ public class UserManager {
     private final List<UUID> fakeAdmins = new ArrayList<>();
     private final List<UUID> frozenPlayers = new ArrayList<>();
 
+    private final Map<UUID, Integer> fakeExp = new HashMap<>();
+
+
+    public void savePlayerExp(Player player) { fakeExp.put(player.getUniqueId(), player.getTotalExperience()); }
+    public int getPrevPlayerExp(Player player) { return fakeExp.get(player.getUniqueId()); }
+    public void setPlayerExp(Player player) { player.setTotalExperience(getPrevPlayerExp(player)); }
+
+    public Map<UUID, Integer> getFakeExp() {
+        return fakeExp;
+    }
+
     public void addPlayer(Player sender, Player other) {
         otherPlayers.put(sender.getUniqueId(), other.getUniqueId());
     }
@@ -34,7 +45,7 @@ public class UserManager {
         frozenPlayers.remove(player.getUniqueId());
     }
 
-    public boolean isFreeze(Player player) {
+    public boolean isFrozen(Player player) {
         return frozenPlayers.contains(player.getUniqueId());
     }
 
@@ -49,4 +60,6 @@ public class UserManager {
     public boolean isFakeAdmin(Player player) {
         return fakeAdmins.contains(player.getUniqueId());
     }
+
+
 }

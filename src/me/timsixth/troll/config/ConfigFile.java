@@ -32,6 +32,17 @@ public class ConfigFile {
 	public static final String SPAWN_ARROW = ChatUtil.chatColor(Main.getMain().getConfig().getString("messages.spawnarrow"));
 	public static final String STRIKE_LIGHTNING = ChatUtil.chatColor(Main.getMain().getConfig().getString("messages.strikelightning"));
 	public static final String POISONED = ChatUtil.chatColor(Main.getMain().getConfig().getString("messages.poisoned"));
+	public static final String ROTATED = ChatUtil.chatColor(Main.getMain().getConfig().getString("messages.rotated"));
+	public static final String CREEPER_HISS = ChatUtil.chatColor(Main.getMain().getConfig().getString("messages.creeperhiss"));
+	public static final String FAKE_EXP = ChatUtil.chatColor(Main.getMain().getConfig().getString("messages.fakeexp"));
+	public static final String SPEED = ChatUtil.chatColor(Main.getMain().getConfig().getString("messages.speed"));
+	public static final String SCARE = ChatUtil.chatColor(Main.getMain().getConfig().getString("messages.scare"));
+	public static final String TELEPORT = ChatUtil.chatColor(Main.getMain().getConfig().getString("messages.teleport"));
+
+
+
+
+
 
 
 }

@@ -17,7 +17,7 @@ public class Main extends JavaPlugin {
 	public void onEnable() {
 		getConfig().options().copyDefaults(true);
 		saveConfig();
-		
+
 		InvManager invManager = new InvManager();
 		UserManager userManager = new UserManager();
 		

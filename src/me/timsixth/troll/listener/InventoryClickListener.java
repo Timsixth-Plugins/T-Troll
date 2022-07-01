@@ -1,11 +1,13 @@
 package me.timsixth.troll.listener;
 
+import me.timsixth.troll.Main;
 import me.timsixth.troll.config.ConfigFile;
 import me.timsixth.troll.manager.UserManager;
 import me.timsixth.troll.util.ChatUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.EntityType;
@@ -13,9 +15,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
+
+import java.util.Random;
 
 public class InventoryClickListener implements Listener {
 
@@ -70,7 +76,7 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 3:
                     if (isPlayerOnline(other, player, event)) {
-                        if (!userManager.isFreeze(other)) {
+                        if (!userManager.isFrozen(other)) {
                             userManager.freezePlayer(other);
                             player.sendMessage(ConfigFile.FREZZED_PLAYER);
                         } else {
@@ -126,7 +132,9 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 11:
                     if (isPlayerOnline(other, player, event)) {
-                        other.getLocation().getWorld().spawnEntity(other.getLocation(), EntityType.ZOMBIE);
+                        other.getLocation().getWorld().spawnEntity(other.getLocation().add(0.0, 0, 1), EntityType.ZOMBIE);
+                        other.getLocation().getWorld().spawnEntity(other.getLocation().add(0.1, 0, 0), EntityType.ZOMBIE);
+                        other.getLocation().getWorld().spawnEntity(other.getLocation().subtract(1.0, 0, 1), EntityType.ZOMBIE);
                         player.sendMessage(ConfigFile.SPAWN_ZOMBIE);
                         event.setCancelled(true);
                     }
@@ -155,6 +163,73 @@ public class InventoryClickListener implements Listener {
                         event.setCancelled(true);
                     }
                     break;
+                case 15:
+                    if (isPlayerOnline(other, player, event)) {
+
+                        Location location = other.getLocation();
+                        location.setYaw(location.getYaw() + 180.0F);
+                        other.teleport(location);
+
+                        player.sendMessage(ConfigFile.ROTATED);
+                        event.setCancelled(true);
+                    }
+                    break;
+                case 16:
+                    if (isPlayerOnline(other, player, event)) {
+
+                        Location location = other.getLocation();
+                        other.playSound(location, Sound.CREEPER_HISS, 3.5F, 0.5F);
+
+                        player.sendMessage(ConfigFile.CREEPER_HISS);
+                        event.setCancelled(true);
+                    }
+                    break;
+                case 17:
+                    if (isPlayerOnline(other, player, event)) {
+
+                        userManager.savePlayerExp(other);
+                        other.setTotalExperience(0);
+
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                userManager.setPlayerExp(other);
+                            }
+                        }.runTaskLater(Main.getPlugin(Main.class), 10 * 20L);
+
+                        player.sendMessage(ConfigFile.FAKE_EXP);
+                        event.setCancelled(true);
+                    }
+                    break;
+                case 18:
+                    if (isPlayerOnline(other, player, event)) {
+                        other.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200, 100, true));
+
+                        player.sendMessage(ConfigFile.SPEED);
+                        event.setCancelled(true);
+                    }
+                    break;
+                case 19:
+                    if (isPlayerOnline(other, player, event)) {
+                        Location location = other.getLocation();
+                        other.playSound(location, Sound.GHAST_SCREAM2, 7.0F, 1.0F);
+
+                        player.sendMessage(ConfigFile.SCARE);
+                        event.setCancelled(true);
+                    }
+                    break;
+                case 20:
+                    if (isPlayerOnline(other, player, event)) {
+                        Location location = other.getLocation();
+                        Random rand = new Random();
+
+                        Location location2 = location.add(rand.nextInt(21), 0.0, rand.nextInt(21));
+                        other.teleport(location2);
+
+                        player.sendMessage(ConfigFile.TELEPORT);
+                        event.setCancelled(true);
+                    }
+                    break;
                 default:
                     event.setCancelled(true);
                     break;
@@ -162,6 +237,7 @@ public class InventoryClickListener implements Listener {
 
         }
     }
+
 
     private void setMaterial(Player other, Material material, Player player, String message, InventoryClickEvent event) {
         if (isPlayerOnline(other, player, event)) {
@@ -191,4 +267,5 @@ public class InventoryClickListener implements Listener {
         }
         return true;
     }
+
 }

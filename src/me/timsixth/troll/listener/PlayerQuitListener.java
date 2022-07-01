@@ -22,7 +22,7 @@ public class PlayerQuitListener implements Listener {
 			userManager.removePlayer(player);
 		}
 
-		if (userManager.isFreeze(player)) {
+		if (userManager.isFrozen(player)) {
 			userManager.unFreeze(player);
 		}
 

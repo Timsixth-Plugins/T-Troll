@@ -16,8 +16,8 @@ public class FreezePlayerListener implements Listener {
 
 	@EventHandler
 	public void onMove(PlayerMoveEvent event) {
-		if (userManager.isFreeze(event.getPlayer())) {
-			event.getPlayer().sendMessage(ChatUtil.chatColor("&cYou are freeze"));
+		if (userManager.isFrozen(event.getPlayer())) {
+			event.getPlayer().sendMessage(ChatUtil.chatColor("&cYou are frozen"));
 			event.getPlayer().teleport(event.getFrom());
 		}
 	}
