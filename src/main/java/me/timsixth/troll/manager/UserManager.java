@@ -1,16 +1,18 @@
 package me.timsixth.troll.manager;
 
-import me.timsixth.troll.Main;
+import lombok.RequiredArgsConstructor;
+import me.timsixth.troll.TrollPlugin;
 import me.timsixth.troll.model.Troll;
 import me.timsixth.troll.model.TrolledUserProperties;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
-
+@RequiredArgsConstructor
 public class UserManager {
 
-    TrolledUserProperties trolledUserProperties = new TrolledUserProperties();
+    private final TrollPlugin trollPlugin;
+
     private final List<Troll> trolls = new ArrayList<>();
 
     public void createNewTroll(Troll troll){
@@ -38,7 +40,8 @@ public class UserManager {
     }
 
 
-    public void fakeInventoryClear(Player player, Main main) {
+    public void fakeInventoryClear(Player player) {
+        TrolledUserProperties trolledUserProperties = getTrollByVictimUuid(player.getUniqueId()).getTrolledUser();
 
         for(int i = 0; i <= 35; ++i) {
             trolledUserProperties.getInventory()[i] = player.getInventory().getItem(i);
@@ -66,7 +69,7 @@ public class UserManager {
                 player.getInventory().setLeggings(trolledUserProperties.getArmor()[2]);
                 player.getInventory().setBoots(trolledUserProperties.getArmor()[3]);
             }
-        }.runTaskLater(main, 10 * 20L);
+        }.runTaskLater(trollPlugin, 10 * 20L);
 
     }
 }

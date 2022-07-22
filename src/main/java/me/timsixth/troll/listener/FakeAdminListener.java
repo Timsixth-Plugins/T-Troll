@@ -1,5 +1,6 @@
 package me.timsixth.troll.listener;
 
+import lombok.RequiredArgsConstructor;
 import me.timsixth.troll.config.ConfigFile;
 import me.timsixth.troll.manager.UserManager;
 import me.timsixth.troll.model.Troll;
@@ -8,14 +9,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-
+@RequiredArgsConstructor
 public class FakeAdminListener implements Listener {
 
     private final UserManager userManager;
-
-    public FakeAdminListener(UserManager userManager) {
-        this.userManager = userManager;
-    }
 
     @EventHandler
     public void onChat(AsyncPlayerChatEvent event) {

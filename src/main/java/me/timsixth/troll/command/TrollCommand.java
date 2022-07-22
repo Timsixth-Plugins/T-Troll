@@ -1,5 +1,6 @@
 package me.timsixth.troll.command;
 
+import lombok.RequiredArgsConstructor;
 import me.timsixth.troll.config.ConfigFile;
 import me.timsixth.troll.manager.InvManager;
 import me.timsixth.troll.manager.UserManager;
@@ -11,15 +12,12 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+@RequiredArgsConstructor
 public class TrollCommand implements CommandExecutor {
 	
 	private final InvManager invManager;
 	private final UserManager userManager;
 	
-	public TrollCommand(InvManager invManager,UserManager userManager) {
-		this.invManager = invManager;
-		this.userManager = userManager;
-	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command arg1, String arg2, String[] args) {

@@ -17,8 +17,8 @@ public class InvManager {
 		ItemStack fakeOp = ItemUtil.createItem(new ItemStack(Material.COMMAND), "&9&lTroll &8- &7Give fake op to player");
 		ItemStack freeze = ItemUtil.createItem(new ItemStack(Material.ICE), "&9&lTroll &8- &7Freeze/UnFreeze the player");
 		ItemStack rocket = ItemUtil.createItem(new ItemStack(Material.REDSTONE_BLOCK), "&9&lTroll &8- &7Launch rocket with player in to cosmos");
-		ItemStack fakecrash = ItemUtil.createItem(new ItemStack(Material.INK_SACK), "&9&lTroll &8- &7Give fake crash to player");
-		ItemStack fakeban = ItemUtil.createItem(new ItemStack(Material.BARRIER), "&9&lTroll &8- &7Give fake ban to player");
+		ItemStack fakeCrash = ItemUtil.createItem(new ItemStack(Material.INK_SACK), "&9&lTroll &8- &7Give fake crash to player");
+		ItemStack fakeBan = ItemUtil.createItem(new ItemStack(Material.BARRIER), "&9&lTroll &8- &7Give fake ban to player");
 		ItemStack web = ItemUtil.createItem(new ItemStack(Material.WEB),"&9&lTroll &8- &7Spawns webs under the player");
 		ItemStack anvil = ItemUtil.createItem(new ItemStack(Material.ANVIL),"&9&lTroll &8- &7Will spawn anvil above the player");
 		ItemStack lavaBucket = ItemUtil.createItem(new ItemStack(Material.LAVA_BUCKET),"&9&lTroll &8- &7Spawns lava under the player");
@@ -46,8 +46,8 @@ public class InvManager {
 		inv.setItem(2, fakeOp);
 		inv.setItem(3, freeze);
 		inv.setItem(4, rocket);
-		inv.setItem(5, fakecrash);
-		inv.setItem(6, fakeban);
+		inv.setItem(5, fakeCrash);
+		inv.setItem(6, fakeBan);
 		inv.setItem(7, web);
 		inv.setItem(8, anvil);
 		inv.setItem(9, lavaBucket);

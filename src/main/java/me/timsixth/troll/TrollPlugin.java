@@ -10,7 +10,7 @@ import me.timsixth.troll.manager.UserManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Main extends JavaPlugin {
+public class TrollPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
@@ -18,14 +18,12 @@ public class Main extends JavaPlugin {
         saveConfig();
 
         InvManager invManager = new InvManager();
-        UserManager userManager = new UserManager();
+        UserManager userManager = new UserManager(this);
 
         getCommand("troll").setExecutor(new TrollCommand(invManager, userManager));
         Bukkit.getPluginManager().registerEvents(new FakeAdminListener(userManager), this);
         Bukkit.getPluginManager().registerEvents(new FreezePlayerListener(userManager), this);
-        Bukkit.getPluginManager().registerEvents(new InventoryClickListener(this,userManager), this);
+        Bukkit.getPluginManager().registerEvents(new InventoryClickListener(userManager,this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(userManager), this);
-
-
     }
 }

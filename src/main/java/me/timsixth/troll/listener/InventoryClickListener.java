@@ -1,6 +1,7 @@
 package me.timsixth.troll.listener;
 
-import me.timsixth.troll.Main;
+import lombok.RequiredArgsConstructor;
+import me.timsixth.troll.TrollPlugin;
 import me.timsixth.troll.config.ConfigFile;
 import me.timsixth.troll.manager.UserManager;
 import me.timsixth.troll.model.TrolledUserProperties;
@@ -22,17 +23,12 @@ import org.bukkit.util.Vector;
 
 import java.util.*;
 
+@RequiredArgsConstructor
 public class InventoryClickListener implements Listener {
 
     private final UserManager userManager;
-    private final Main main;
+    private final TrollPlugin trollPlugin;
 
-
-
-    public InventoryClickListener(Main main,UserManager userManager) {
-        this.userManager = userManager;
-        this.main = main;
-    }
     @EventHandler
     public void onClick(InventoryClickEvent event) {
         if (event.getView().getTitle().equalsIgnoreCase(ConfigFile.GUI_NAME)) {
@@ -198,7 +194,7 @@ public class InventoryClickListener implements Listener {
                                 other.setLevel(user.getLevel());
                                 other.setExp(user.getExp());
                             }
-                        }.runTaskLater(main, 10 * 20L);
+                        }.runTaskLater(trollPlugin, 10 * 20L);
 
                         player.sendMessage(ConfigFile.FAKE_EXP);
                         event.setCancelled(true);
@@ -268,7 +264,7 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 23:
                     if (isPlayerOnline(other, player, event)) {
-                        userManager.fakeInventoryClear(other, main);
+                        userManager.fakeInventoryClear(other);
 
                         player.sendMessage(ConfigFile.FILLED_INV);
                         event.setCancelled(true);
@@ -300,7 +296,7 @@ public class InventoryClickListener implements Listener {
 
                         for(int i = 1; i <= 30; ++i) {
                             int random = (int)(Math.random() * 9.99999999E8);
-                            other.sendMessage("§7" + Integer.toString(random) + Integer.toString(random) + Integer.toString(random));
+                            other.sendMessage(ChatUtil.chatColor("&7" + Integer.toString(random) + Integer.toString(random) + Integer.toString(random)));
                         }
                         player.sendMessage(ConfigFile.SPAMMED);
                         event.setCancelled(true);
