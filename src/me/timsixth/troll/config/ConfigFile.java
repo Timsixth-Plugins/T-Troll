@@ -10,7 +10,6 @@ public class ConfigFile {
 	public static final String FAKEADMIN_FORMAT = ChatUtil.chatColor(Main.getPlugin(Main.class).getConfig().getString("fakeadmin_format"));
 	public static final String FAKEOP_FORMAT = ChatUtil.chatColor(Main.getPlugin(Main.class).getConfig().getString("fakeop_format"));
 	public static final float POWER_OF_EXPLOSION = Main.getPlugin(Main.class).getConfig().getInt("power_explosion");
-	
 	public static final String CORRECT_USE = ChatUtil.chatColor(Main.getPlugin(Main.class).getConfig().getString("messages.correctuse"));
 	public static final String NO_PERMISSION = ChatUtil.chatColor(Main.getPlugin(Main.class).getConfig().getString("messages.nopermission"));
 	public static final String BLOWUP = ChatUtil.chatColor(Main.getPlugin(Main.class).getConfig().getString("messages.blowup"));
@@ -38,6 +37,14 @@ public class ConfigFile {
 	public static final String SPEED = ChatUtil.chatColor(Main.getPlugin(Main.class).getConfig().getString("messages.speed"));
 	public static final String SCARE = ChatUtil.chatColor(Main.getPlugin(Main.class).getConfig().getString("messages.scare"));
 	public static final String TELEPORT = ChatUtil.chatColor(Main.getPlugin(Main.class).getConfig().getString("messages.teleport"));
+	public static final String WOODEN_PICK = ChatUtil.chatColor(Main.getPlugin(Main.class).getConfig().getString("messages.wooden_pick"));
+	public static final String WOODEN_PICK_OTHER = ChatUtil.chatColor(Main.getPlugin(Main.class).getConfig().getString("messages.wooden_pick_other"));
+	public static final String SPAWN_TP = ChatUtil.chatColor(Main.getPlugin(Main.class).getConfig().getString("messages.spawntp"));
+	public static final String FILLED_INV = ChatUtil.chatColor(Main.getPlugin(Main.class).getConfig().getString("messages.filledinv"));
+	public static final String NO_HAND_ITEM = ChatUtil.chatColor(Main.getPlugin(Main.class).getConfig().getString("messages.nohanditem"));
+	public static final String DROPPED_HAND_ITEM = ChatUtil.chatColor(Main.getPlugin(Main.class).getConfig().getString("messages.droppedhanditem"));
+	public static final String SPAMMED = ChatUtil.chatColor(Main.getPlugin(Main.class).getConfig().getString("messages.spammed"));
+	public static final String SWAPPED = ChatUtil.chatColor(Main.getPlugin(Main.class).getConfig().getString("messages.swapped"));
 
 
 

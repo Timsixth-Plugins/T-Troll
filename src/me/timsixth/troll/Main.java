@@ -25,5 +25,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new FreezePlayerListener(userManager), this);
         Bukkit.getPluginManager().registerEvents(new InventoryClickListener(this,userManager), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(userManager), this);
+
+
     }
 }
