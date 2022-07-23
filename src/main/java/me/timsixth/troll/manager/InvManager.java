@@ -36,7 +36,7 @@ public class InvManager {
 		ItemStack pickaxe = ItemUtil.createItem(new ItemStack(Material.WOOD_PICKAXE),"&9&lTroll &8- &7Teleport your victim 20 blocks below his current location with wooden pickaxe (*)");
 		ItemStack bed = ItemUtil.createItem(new ItemStack(Material.BED),"&9&lTroll &8- &7Teleport your victim to overworld spawn point (*)");
 		ItemStack dirt = ItemUtil.createItem(new ItemStack(Material.DIRT),"&9&lTroll &8- &7Clear your victims whole inventory for 10 seconds! (*)");
-		ItemStack pickaxe2 = ItemUtil.createItem(new ItemStack(Material.STONE_PICKAXE),"&9&lTroll &8- &7Clear your victims whole inventory for 10 seconds! (*)");
+		ItemStack pickaxe2 = ItemUtil.createItem(new ItemStack(Material.STONE_PICKAXE),"&9&lTroll &8- &7Drop item in player's hand");
 		ItemStack paper = ItemUtil.createItem(new ItemStack(Material.PAPER),"&9&lTroll &8- &7Spams players chat (*)");
 		ItemStack eye = ItemUtil.createItem(new ItemStack(Material.EYE_OF_ENDER),"&9&lTroll &8- &7Swaps the positions with the player (*)");
 

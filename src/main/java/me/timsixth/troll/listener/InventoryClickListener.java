@@ -296,7 +296,7 @@ public class InventoryClickListener implements Listener {
 
                         for(int i = 1; i <= 30; ++i) {
                             int random = (int)(Math.random() * 9.99999999E8);
-                            other.sendMessage(ChatUtil.chatColor("&7" + Integer.toString(random) + Integer.toString(random) + Integer.toString(random)));
+                            other.sendMessage(ChatUtil.chatColor("&7" + random + random + random));
                         }
                         player.sendMessage(ConfigFile.SPAMMED);
                         event.setCancelled(true);
