@@ -2,6 +2,7 @@ package me.timsixth.troll.listener;
 
 import lombok.RequiredArgsConstructor;
 import me.timsixth.troll.TrollPlugin;
+import me.timsixth.troll.util.XSound;
 import me.timsixth.troll.config.ConfigFile;
 import me.timsixth.troll.manager.UserManager;
 import me.timsixth.troll.model.TrolledUserProperties;
@@ -174,9 +175,7 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 16:
                     if (isPlayerOnline(other, player, event)) {
-
-                        Location location = other.getLocation();
-                        other.playSound(location, Sound.CREEPER_HISS, 3.5F, 0.5F);
+                        XSound.play(other,"CREEPER_HISS");
 
                         player.sendMessage(ConfigFile.CREEPER_HISS);
                         event.setCancelled(true);
@@ -210,8 +209,7 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 19:
                     if (isPlayerOnline(other, player, event)) {
-                        Location location = other.getLocation();
-                        other.playSound(location, Sound.GHAST_SCREAM2, 7.0F, 1.0F);
+                        XSound.play(other,"ENTITY_GHAST_SCREAM");
 
                         player.sendMessage(ConfigFile.SCARE);
                         event.setCancelled(true);
@@ -309,10 +307,9 @@ public class InventoryClickListener implements Listener {
                         Location playerLocation = player.getLocation();
 
                         other.teleport(playerLocation);
-                        other.playSound(playerLocation, Sound.ENDERMAN_TELEPORT, 3.5F, 0.5F);
+                        XSound.play(other,"ENDERMAN_TELEPORT");
                         player.teleport(otherLocation);
-                        player.playSound(otherLocation, Sound.ENDERMAN_TELEPORT, 3.5F, 0.5F);
-
+                        XSound.play(player,"ENDERMAN_TELEPORT");
 
                         player.sendMessage(ConfigFile.SWAPPED);
                         event.setCancelled(true);
