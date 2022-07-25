@@ -37,12 +37,7 @@ public class TrollCommand implements CommandExecutor {
                 Player other = Bukkit.getPlayerExact(args[0]);
 
                 Optional<Troll> trollBySenderUuid = userManager.getTrollBySenderUuid(player.getUniqueId());
-                if (!trollBySenderUuid.isPresent()) {
-                    return true;
-                }
-                if (userManager.trollExists(trollBySenderUuid.get())) {
-                    userManager.removeTroll(trollBySenderUuid.get());
-                }
+                trollBySenderUuid.ifPresent(userManager::removeTroll);
                 if (other != null) {
                     userManager.createNewTroll(new Troll(player.getUniqueId(), other.getUniqueId(), new TrolledUserProperties()));
                     player.openInventory(invManager.showTrollingInventory());
