@@ -26,22 +26,25 @@ public class UserManager {
         trolls.remove(troll);
     }
 
-    public Troll getTrollBySenderUuid(UUID uuid){
+    public Optional<Troll> getTrollBySenderUuid(UUID uuid){
         return trolls.stream()
                 .filter(troll -> troll.getSenderUuid().equals(uuid))
-                .findAny()
-                .orElse(null);
+                .findAny();
     }
-    public Troll getTrollByVictimUuid(UUID uuid){
+    public Optional<Troll> getTrollByVictimUuid(UUID uuid){
         return trolls.stream()
                 .filter(trolledUser -> trolledUser.getVictimUuid().equals(uuid))
-                .findAny()
-                .orElse(null);
+                .findAny();
     }
 
 
     public void fakeInventoryClear(Player player) {
-        TrolledUserProperties trolledUserProperties = getTrollByVictimUuid(player.getUniqueId()).getTrolledUser();
+        Optional<Troll> trollByVictimUuid = getTrollByVictimUuid(player.getUniqueId());
+        if (!trollByVictimUuid.isPresent()){
+            return;
+        }
+
+        TrolledUserProperties trolledUserProperties = trollByVictimUuid.get().getTrolledUser();
 
         for(int i = 0; i <= 35; ++i) {
             trolledUserProperties.getInventory()[i] = player.getInventory().getItem(i);

@@ -2,6 +2,7 @@ package me.timsixth.troll.listener;
 
 import lombok.RequiredArgsConstructor;
 import me.timsixth.troll.TrollPlugin;
+import me.timsixth.troll.model.Troll;
 import me.timsixth.troll.util.XSound;
 import me.timsixth.troll.config.ConfigFile;
 import me.timsixth.troll.manager.UserManager;
@@ -37,8 +38,14 @@ public class InventoryClickListener implements Listener {
                 return;
             }
             Player player = (Player) event.getWhoClicked();
-            TrolledUserProperties user = userManager.getTrollBySenderUuid(player.getUniqueId()).getTrolledUser();
-            Player other = Bukkit.getPlayer(userManager.getTrollBySenderUuid(player.getUniqueId()).getVictimUuid());
+
+            Optional<Troll> trollBySenderUuid = userManager.getTrollBySenderUuid(player.getUniqueId());
+            if (!trollBySenderUuid.isPresent()){
+                return;
+            }
+
+            TrolledUserProperties user = trollBySenderUuid.get().getTrolledUser();
+            Player other = Bukkit.getPlayer(trollBySenderUuid.get().getVictimUuid());
 
             switch (event.getRawSlot()) {
                 case 0:

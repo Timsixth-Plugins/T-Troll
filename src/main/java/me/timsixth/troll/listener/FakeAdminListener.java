@@ -9,6 +9,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+
+import java.util.Optional;
+
 @RequiredArgsConstructor
 public class FakeAdminListener implements Listener {
 
@@ -17,10 +20,13 @@ public class FakeAdminListener implements Listener {
     @EventHandler
     public void onChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
-        if (userManager.getTrollByVictimUuid(player.getUniqueId()) == null) {
+
+        Optional<Troll> trollByVictimUuid = userManager.getTrollByVictimUuid(player.getUniqueId());
+
+        if (!trollByVictimUuid.isPresent()) {
             return;
         }
-        Troll troll = userManager.getTrollByVictimUuid(player.getUniqueId());
+        Troll troll = trollByVictimUuid.get();
 
         if (troll.getTrolledUser().isFakeAdmin()) {
             String msg = ConfigFile.FAKEADMIN_FORMAT;

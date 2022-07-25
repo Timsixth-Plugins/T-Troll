@@ -8,6 +8,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+
+import java.util.Optional;
+
 @RequiredArgsConstructor
 public class FreezePlayerListener implements Listener {
 
@@ -17,10 +20,13 @@ public class FreezePlayerListener implements Listener {
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        if (userManager.getTrollByVictimUuid(player.getUniqueId()) == null) {
+
+        Optional<Troll> trollByVictimUuid = userManager.getTrollByVictimUuid(player.getUniqueId());
+
+        if (!trollByVictimUuid.isPresent()) {
             return;
         }
-        Troll troll = userManager.getTrollByVictimUuid(player.getUniqueId());
+        Troll troll = trollByVictimUuid.get();
         if (troll.getTrolledUser().isFrozen()) {
             player.sendMessage(ChatUtil.chatColor("&cYou are frozen"));
             player.teleport(event.getFrom());

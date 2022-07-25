@@ -16,13 +16,13 @@ public class PlayerQuitListener implements Listener {
 	public void onQuit(PlayerQuitEvent event) {
 		Player player = event.getPlayer();
 
-		if (userManager.getTrollBySenderUuid(player.getUniqueId()) != null){
-			Troll troll = userManager.getTrollBySenderUuid(player.getUniqueId());
+		if(userManager.getTrollBySenderUuid(player.getUniqueId()).isPresent()){
+			Troll troll = userManager.getTrollBySenderUuid(player.getUniqueId()).get();
 			userManager.removeTroll(troll);
 			return;
 		}
-		if (userManager.getTrollByVictimUuid(player.getUniqueId()) != null){
-			Troll troll = userManager.getTrollByVictimUuid(player.getUniqueId());
+		if (userManager.getTrollByVictimUuid(player.getUniqueId()).isPresent()){
+			Troll troll = userManager.getTrollByVictimUuid(player.getUniqueId()).get();
 			userManager.removeTroll(troll);
 		}
 	}
