@@ -18,10 +18,6 @@ public class UserManager {
     public void createNewTroll(Troll troll){
         trolls.add(troll);
     }
-    public boolean trollExists(Troll troll){
-        return trolls.contains(troll);
-    }
-
     public void removeTroll(Troll troll){
         trolls.remove(troll);
     }
