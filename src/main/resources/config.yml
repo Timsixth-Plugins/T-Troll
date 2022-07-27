@@ -39,3 +39,8 @@ messages:
   droppedhanditem: '&7[ &9T-Troll &7] Dropped item from players hand'
   spammed: '&7[ &9T-Troll &7] Spammed random messages on players chat'
   swapped: '&7[ &9T-Troll &7] Swapped positions with the player'
+  drunk: '&7[ &9T-Troll &7] You applied effects to player'
+  drunkother: '&f<{NICK}> i don''t feel so good..'
+  fakejoin: '&7[ &9T-Troll &7] You sent fake join message to player'
+  fakejoinother: '&eHerobrine joined the game'
+  openinv: '&7[ &9T-Troll &7] Opened players inventory'

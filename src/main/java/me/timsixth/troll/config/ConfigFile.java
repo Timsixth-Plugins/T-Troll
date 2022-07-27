@@ -45,5 +45,10 @@ public class ConfigFile {
 	public static final String DROPPED_HAND_ITEM = ChatUtil.chatColor(TrollPlugin.getPlugin(TrollPlugin.class).getConfig().getString("messages.droppedhanditem"));
 	public static final String SPAMMED = ChatUtil.chatColor(TrollPlugin.getPlugin(TrollPlugin.class).getConfig().getString("messages.spammed"));
 	public static final String SWAPPED = ChatUtil.chatColor(TrollPlugin.getPlugin(TrollPlugin.class).getConfig().getString("messages.swapped"));
+	public static final String DRUNK = ChatUtil.chatColor(TrollPlugin.getPlugin(TrollPlugin.class).getConfig().getString("messages.drunk"));
+	public static final String DRUNK_OTHER = ChatUtil.chatColor(TrollPlugin.getPlugin(TrollPlugin.class).getConfig().getString("messages.drunkother"));
+	public static final String FAKE_JOIN = ChatUtil.chatColor(TrollPlugin.getPlugin(TrollPlugin.class).getConfig().getString("messages.fakejoin"));
+	public static final String FAKE_JOIN_OTHER = ChatUtil.chatColor(TrollPlugin.getPlugin(TrollPlugin.class).getConfig().getString("messages.fakejoinother"));
+	public static final String OPEN_INV = ChatUtil.chatColor(TrollPlugin.getPlugin(TrollPlugin.class).getConfig().getString("messages.openinv"));
 
 }

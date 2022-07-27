@@ -16,6 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
@@ -319,6 +320,37 @@ public class InventoryClickListener implements Listener {
                         XSound.play(player,"ENDERMAN_TELEPORT");
 
                         player.sendMessage(ConfigFile.SWAPPED);
+                        event.setCancelled(true);
+                    }
+                    break;
+                case 27:
+                    if (isPlayerOnline(other, player, event)) {
+
+                        other.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 400, 3, true));
+                        other.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 400, 3, true));
+                        other.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 400, 3, true));
+                        other.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 400, 3, true));
+
+                        player.sendMessage(ConfigFile.DRUNK);
+                        other.sendMessage(ConfigFile.DRUNK_OTHER.replace("{NICK}", other.getName()));
+                        event.setCancelled(true);
+                    }
+                    break;
+                case 28:
+                    if (isPlayerOnline(other, player, event)) {
+
+                        other.sendMessage(ConfigFile.FAKE_JOIN_OTHER);
+                        player.sendMessage(ConfigFile.FAKE_JOIN);
+                        event.setCancelled(true);
+                    }
+                    break;
+                case 29:
+                    if (isPlayerOnline(other, player, event)) {
+
+                        Inventory otherInventory = other.getInventory();
+                        player.openInventory(otherInventory);
+
+                        player.sendMessage(ConfigFile.OPEN_INV);
                         event.setCancelled(true);
                     }
                     break;
