@@ -1,5 +1,5 @@
 name: T-Troll
-version: 1..7
+version: 1.8
 authors: [timsixth,Hopa2008]
 main: me.timsixth.troll.TrollPlugin
 commands:
