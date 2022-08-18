@@ -6,9 +6,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
-public class InvManager {
+public class InventoryManager {
 
 	public Inventory showTrollingInventory() {
 		Inventory inv = Bukkit.createInventory(null, 45, ConfigFile.GUI_NAME);
@@ -34,15 +33,16 @@ public class InvManager {
 		ItemStack feather = ItemUtil.createItem(new ItemStack(Material.FEATHER),"&9&lTroll &8- &7Apply uncontrollable speed to your victim");
 		ItemStack fireball = ItemUtil.createItem(new ItemStack(Material.FIREBALL),"&9&lTroll &8- &7Scare your victim with loud sound");
 		ItemStack compass2 = ItemUtil.createItem(new ItemStack(Material.COMPASS),"&9&lTroll &8- &7Teleport your victim in random place within 20 blocks range");
-		ItemStack pickaxe = ItemUtil.createItem(new ItemStack(Material.WOOD_PICKAXE),"&9&lTroll &8- &7Teleport your victim 20 blocks below his current location with wooden pickaxe");
+		ItemStack woodenPickaxe = ItemUtil.createItem(new ItemStack(Material.WOOD_PICKAXE),"&9&lTroll &8- &7Teleport your victim 20 blocks below his current location with wooden pickaxe");
 		ItemStack bed = ItemUtil.createItem(new ItemStack(Material.BED),"&9&lTroll &8- &7Teleport your victim to overworld spawn point");
 		ItemStack dirt = ItemUtil.createItem(new ItemStack(Material.DIRT),"&9&lTroll &8- &7Clear your victims whole inventory for 10 seconds!");
-		ItemStack pickaxe2 = ItemUtil.createItem(new ItemStack(Material.STONE_PICKAXE),"&9&lTroll &8- &7Drop item in player's hand");
+		ItemStack stonePickaxe = ItemUtil.createItem(new ItemStack(Material.STONE_PICKAXE),"&9&lTroll &8- &7Drop item in player's hand");
 		ItemStack paper = ItemUtil.createItem(new ItemStack(Material.PAPER),"&9&lTroll &8- &7Spams players chat");
 		ItemStack eye = ItemUtil.createItem(new ItemStack(Material.EYE_OF_ENDER),"&9&lTroll &8- &7Swaps the positions with the player");
 		ItemStack drunk = ItemUtil.createItem(new ItemStack(Material.POTION),"&9&lTroll &8- &7Applies drunk effect to player");
 		ItemStack map = ItemUtil.createItem(new ItemStack(Material.MAP),"&9&lTroll &8- &7Sends fake join message to player");
 		ItemStack chest = ItemUtil.createItem(new ItemStack(Material.CHEST),"&9&lTroll &8- &7Opens players inventory");
+		ItemStack pumpkin = ItemUtil.createItem(new ItemStack(Material.PUMPKIN),"&9&lTroll &8- &7Put on pumpkin on trolled player's head ");
 
 		inv.setItem(0, tnt);
 		inv.setItem(1, fakeAdmin);
@@ -65,15 +65,16 @@ public class InvManager {
 		inv.setItem(18, feather);
 		inv.setItem(19, fireball);
 		inv.setItem(20, compass2);
-		inv.setItem(21, pickaxe);
+		inv.setItem(21, woodenPickaxe);
 		inv.setItem(22, bed);
 		inv.setItem(23, dirt);
-		inv.setItem(24, pickaxe2);
+		inv.setItem(24, stonePickaxe);
 		inv.setItem(25, paper);
 		inv.setItem(26, eye);
 		inv.setItem(27, drunk);
 		inv.setItem(28, map);
 		inv.setItem(29, chest);
+		inv.setItem(30,pumpkin);
 
 		return inv;
 	}

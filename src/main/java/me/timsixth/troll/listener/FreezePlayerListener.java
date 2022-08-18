@@ -16,7 +16,6 @@ public class FreezePlayerListener implements Listener {
 
     private final UserManager userManager;
 
-
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();

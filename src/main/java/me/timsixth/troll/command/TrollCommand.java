@@ -2,7 +2,7 @@ package me.timsixth.troll.command;
 
 import lombok.RequiredArgsConstructor;
 import me.timsixth.troll.config.ConfigFile;
-import me.timsixth.troll.manager.InvManager;
+import me.timsixth.troll.manager.InventoryManager;
 import me.timsixth.troll.manager.UserManager;
 import me.timsixth.troll.model.Troll;
 import me.timsixth.troll.model.TrolledUserProperties;
@@ -17,9 +17,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TrollCommand implements CommandExecutor {
 
-    private final InvManager invManager;
+    private final InventoryManager inventoryManager;
     private final UserManager userManager;
-
 
     @Override
     public boolean onCommand(CommandSender sender, Command arg1, String arg2, String[] args) {
@@ -40,7 +39,7 @@ public class TrollCommand implements CommandExecutor {
                 trollBySenderUuid.ifPresent(userManager::removeTroll);
                 if (other != null) {
                     userManager.createNewTroll(new Troll(player.getUniqueId(), other.getUniqueId(), new TrolledUserProperties()));
-                    player.openInventory(invManager.showTrollingInventory());
+                    player.openInventory(inventoryManager.showTrollingInventory());
                 } else {
                     player.sendMessage(ConfigFile.OFFLINEPLAYER);
                 }
@@ -51,5 +50,4 @@ public class TrollCommand implements CommandExecutor {
         }
         return true;
     }
-
 }
