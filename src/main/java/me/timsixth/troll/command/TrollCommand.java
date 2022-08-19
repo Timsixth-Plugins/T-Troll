@@ -3,7 +3,7 @@ package me.timsixth.troll.command;
 import lombok.RequiredArgsConstructor;
 import me.timsixth.troll.config.ConfigFile;
 import me.timsixth.troll.manager.InventoryManager;
-import me.timsixth.troll.manager.UserManager;
+import me.timsixth.troll.manager.TrollManager;
 import me.timsixth.troll.model.Troll;
 import me.timsixth.troll.model.TrolledUserProperties;
 import org.bukkit.Bukkit;
@@ -18,7 +18,7 @@ import java.util.Optional;
 public class TrollCommand implements CommandExecutor {
 
     private final InventoryManager inventoryManager;
-    private final UserManager userManager;
+    private final TrollManager trollManager;
 
     @Override
     public boolean onCommand(CommandSender sender, Command arg1, String arg2, String[] args) {
@@ -35,10 +35,10 @@ public class TrollCommand implements CommandExecutor {
             } else if (args.length == 1) {
                 Player other = Bukkit.getPlayerExact(args[0]);
 
-                Optional<Troll> trollBySenderUuid = userManager.getTrollBySenderUuid(player.getUniqueId());
-                trollBySenderUuid.ifPresent(userManager::removeTroll);
+                Optional<Troll> trollBySenderUuid = trollManager.getTrollBySenderUuid(player.getUniqueId());
+                trollBySenderUuid.ifPresent(trollManager::removeTroll);
                 if (other != null) {
-                    userManager.createNewTroll(new Troll(player.getUniqueId(), other.getUniqueId(), new TrolledUserProperties()));
+                    trollManager.createNewTroll(new Troll(player.getUniqueId(), other.getUniqueId(), new TrolledUserProperties()));
                     player.openInventory(inventoryManager.showTrollingInventory());
                 } else {
                     player.sendMessage(ConfigFile.OFFLINEPLAYER);

@@ -1,7 +1,7 @@
 package me.timsixth.troll.listener;
 
 import lombok.RequiredArgsConstructor;
-import me.timsixth.troll.manager.UserManager;
+import me.timsixth.troll.manager.TrollManager;
 import me.timsixth.troll.model.Troll;
 import me.timsixth.troll.util.ChatUtil;
 import org.bukkit.entity.Player;
@@ -12,15 +12,15 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-public class FreezePlayerListener implements Listener {
+public class PlayerMoveListener implements Listener {
 
-    private final UserManager userManager;
+    private final TrollManager trollManager;
 
     @EventHandler
-    public void onMove(PlayerMoveEvent event) {
+    private void onMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
 
-        Optional<Troll> trollByVictimUuid = userManager.getTrollByVictimUuid(player.getUniqueId());
+        Optional<Troll> trollByVictimUuid = trollManager.getTrollByVictimUuid(player.getUniqueId());
 
         if (!trollByVictimUuid.isPresent()) {
             return;

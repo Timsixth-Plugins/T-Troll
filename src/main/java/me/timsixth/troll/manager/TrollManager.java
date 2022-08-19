@@ -9,7 +9,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 @RequiredArgsConstructor
-public class UserManager {
+public class TrollManager {
 
     private final TrollPlugin trollPlugin;
 

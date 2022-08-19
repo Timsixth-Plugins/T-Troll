@@ -1,16 +1,16 @@
 package me.timsixth.troll;
 
 import me.timsixth.troll.command.TrollCommand;
-import me.timsixth.troll.listener.FakeAdminListener;
-import me.timsixth.troll.listener.FreezePlayerListener;
-import me.timsixth.troll.listener.InventoryClickListener;
-import me.timsixth.troll.listener.PlayerQuitListener;
+import me.timsixth.troll.listener.*;
 import me.timsixth.troll.manager.InventoryManager;
-import me.timsixth.troll.manager.UserManager;
+import me.timsixth.troll.manager.TrollManager;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class TrollPlugin extends JavaPlugin {
+
+    private TrollManager trollManager;
 
     @Override
     public void onEnable() {
@@ -18,12 +18,17 @@ public class TrollPlugin extends JavaPlugin {
         saveConfig();
 
         InventoryManager inventoryManager = new InventoryManager();
-        UserManager userManager = new UserManager(this);
+        trollManager = new TrollManager(this);
 
-        getCommand("troll").setExecutor(new TrollCommand(inventoryManager, userManager));
-        Bukkit.getPluginManager().registerEvents(new FakeAdminListener(userManager), this);
-        Bukkit.getPluginManager().registerEvents(new FreezePlayerListener(userManager), this);
-        Bukkit.getPluginManager().registerEvents(new InventoryClickListener(userManager,this), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(userManager), this);
+        getCommand("troll").setExecutor(new TrollCommand(inventoryManager, trollManager));
+        registerListeners();
+    }
+
+    private void registerListeners() {
+        PluginManager pluginManager = Bukkit.getPluginManager();
+        pluginManager.registerEvents(new PlayerChatListener(trollManager), this);
+        pluginManager.registerEvents(new PlayerMoveListener(trollManager), this);
+        pluginManager.registerEvents(new InventoryClickListener(trollManager,this), this);
+        pluginManager.registerEvents(new PlayerQuitListener(trollManager), this);
     }
 }

@@ -51,4 +51,8 @@ public class ConfigFile {
 	public static final String FAKE_JOIN_OTHER = ChatUtil.chatColor(TrollPlugin.getPlugin(TrollPlugin.class).getConfig().getString("messages.fakejoinother"));
 	public static final String OPEN_INV = ChatUtil.chatColor(TrollPlugin.getPlugin(TrollPlugin.class).getConfig().getString("messages.openinv"));
 
+    public static final String PUT_ON_PUMPKIN = ChatUtil.chatColor(TrollPlugin.getPlugin(TrollPlugin.class).getConfig().getString("messages.put_on_pumpkin"));
+	public static final String GUI_PREFIX = ChatUtil.chatColor(TrollPlugin.getPlugin(TrollPlugin.class).getConfig().getString("gui_prefix"));
+
+    public static final String SET_DIAMOND_UNDER_PLAYER = ChatUtil.chatColor(TrollPlugin.getPlugin(TrollPlugin.class).getConfig().getString("messages.set_diamonds_under_player"));
 }

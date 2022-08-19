@@ -5,7 +5,7 @@ import me.timsixth.troll.TrollPlugin;
 import me.timsixth.troll.model.Troll;
 import me.timsixth.troll.util.XSound;
 import me.timsixth.troll.config.ConfigFile;
-import me.timsixth.troll.manager.UserManager;
+import me.timsixth.troll.manager.TrollManager;
 import me.timsixth.troll.model.TrolledUserProperties;
 import me.timsixth.troll.util.ChatUtil;
 import org.bukkit.*;
@@ -18,6 +18,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -29,23 +30,23 @@ import java.util.*;
 @RequiredArgsConstructor
 public class InventoryClickListener implements Listener {
 
-    private final UserManager userManager;
+    private final TrollManager trollManager;
     private final TrollPlugin trollPlugin;
 
     @EventHandler
-    public void onClick(InventoryClickEvent event) {
+    private void onClick(InventoryClickEvent event) {
         if (event.getView().getTitle().equalsIgnoreCase(ConfigFile.GUI_NAME)) {
             if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) {
                 return;
             }
             Player player = (Player) event.getWhoClicked();
 
-            Optional<Troll> trollBySenderUuid = userManager.getTrollBySenderUuid(player.getUniqueId());
-            if (!trollBySenderUuid.isPresent()){
+            Optional<Troll> trollBySenderUuid = trollManager.getTrollBySenderUuid(player.getUniqueId());
+            if (!trollBySenderUuid.isPresent()) {
                 return;
             }
 
-            TrolledUserProperties user = trollBySenderUuid.get().getTrolledUser();
+            TrolledUserProperties trolledUser = trollBySenderUuid.get().getTrolledUser();
             Player other = Bukkit.getPlayer(trollBySenderUuid.get().getVictimUuid());
 
             switch (event.getRawSlot()) {
@@ -58,13 +59,13 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 1:
                     if (isPlayerOnline(other, player, event)) {
-                        if (!user.isFakeAdmin()) {
-                            user.setFakeAdmin(true);
+                        if (!trolledUser.isFakeAdmin()) {
+                            trolledUser.setFakeAdmin(true);
                             other.sendMessage(ConfigFile.ADMIN_NOW);
                             String msg = ConfigFile.GAVE_ADMIN.replace("{NICK}", other.getName());
                             player.sendMessage(msg);
                         } else {
-                            user.setFakeAdmin(false);
+                            trolledUser.setFakeAdmin(false);
                             other.sendMessage(ConfigFile.ADMIN_NOW);
                             String msg = ConfigFile.GAVE_ADMIN.replace("{NICK}", other.getName());
                             player.sendMessage(msg);
@@ -83,11 +84,11 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 3:
                     if (isPlayerOnline(other, player, event)) {
-                        if (!user.isFrozen()) {
-                            user.setFrozen(true);
+                        if (!trolledUser.isFrozen()) {
+                            trolledUser.setFrozen(true);
                             player.sendMessage(ConfigFile.FREZZED_PLAYER);
                         } else {
-                            user.setFrozen(false);
+                            trolledUser.setFrozen(false);
                             player.sendMessage(ConfigFile.UNFREEZED);
                         }
                         event.setCancelled(true);
@@ -105,7 +106,7 @@ public class InventoryClickListener implements Listener {
                     if (isPlayerOnline(other, player, event)) {
                         other.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 200, 0, true));
                         other.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 200, 0, true));
-                        other.sendTitle(ChatUtil.chatColor("&c&lCRASH"), null);
+                        other.sendTitle(ChatUtil.chatColor("&c&lCRASH"), "");
                         player.sendMessage(ConfigFile.SENDCRASH);
                         event.setCancelled(true);
                     }
@@ -183,7 +184,7 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 16:
                     if (isPlayerOnline(other, player, event)) {
-                        XSound.play(other,"CREEPER_HISS");
+                        XSound.play(other, "CREEPER_HISS");
 
                         player.sendMessage(ConfigFile.CREEPER_HISS);
                         event.setCancelled(true);
@@ -191,15 +192,15 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 17:
                     if (isPlayerOnline(other, player, event)) {
-                        user.setExp(other.getExp());
-                        user.setLevel(other.getLevel());
+                        trolledUser.setExp(other.getExp());
+                        trolledUser.setLevel(other.getLevel());
                         other.setLevel(0);
                         other.setExp(0);
                         new BukkitRunnable() {
                             @Override
                             public void run() {
-                                other.setLevel(user.getLevel());
-                                other.setExp(user.getExp());
+                                other.setLevel(trolledUser.getLevel());
+                                other.setExp(trolledUser.getExp());
                             }
                         }.runTaskLater(trollPlugin, 10 * 20L);
 
@@ -217,7 +218,7 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 19:
                     if (isPlayerOnline(other, player, event)) {
-                        XSound.play(other,"ENTITY_GHAST_SCREAM");
+                        XSound.play(other, "ENTITY_GHAST_SCREAM");
 
                         player.sendMessage(ConfigFile.SCARE);
                         event.setCancelled(true);
@@ -242,9 +243,9 @@ public class InventoryClickListener implements Listener {
                 case 21:
                     if (isPlayerOnline(other, player, event)) {
 
-                        Location location = other.getLocation().subtract(0.0,20.0,0.0);
+                        Location location = other.getLocation().subtract(0.0, 20.0, 0.0);
                         location.getBlock().setType(Material.AIR);
-                        location.add(0.0,1.0,0.0).getBlock().setType(Material.AIR);
+                        location.add(0.0, 1.0, 0.0).getBlock().setType(Material.AIR);
                         other.teleport(location);
 
                         other.getInventory().addItem(new ItemStack(Material.WOOD_PICKAXE));
@@ -260,7 +261,7 @@ public class InventoryClickListener implements Listener {
                         Location location = Bukkit.getServer().getWorld("world").getSpawnLocation();
 
                         while (location.getWorld().getBlockAt(location).getType() != Material.AIR) {
-                            location = location.add(0.0,1.0,0.0);
+                            location = location.add(0.0, 1.0, 0.0);
                         }
 
                         other.teleport(location);
@@ -270,7 +271,7 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 23:
                     if (isPlayerOnline(other, player, event)) {
-                        userManager.fakeInventoryClear(other);
+                        trollManager.fakeInventoryClear(other);
 
                         player.sendMessage(ConfigFile.FILLED_INV);
                         event.setCancelled(true);
@@ -300,8 +301,8 @@ public class InventoryClickListener implements Listener {
                 case 25:
                     if (isPlayerOnline(other, player, event)) {
 
-                        for(int i = 1; i <= 30; ++i) {
-                            int random = (int)(Math.random() * 9.99999999E8);
+                        for (int i = 1; i <= 30; ++i) {
+                            int random = (int) (Math.random() * 9.99999999E8);
                             other.sendMessage(ChatUtil.chatColor("&7" + random + random + random));
                         }
                         player.sendMessage(ConfigFile.SPAMMED);
@@ -315,9 +316,9 @@ public class InventoryClickListener implements Listener {
                         Location playerLocation = player.getLocation();
 
                         other.teleport(playerLocation);
-                        XSound.play(other,"ENDERMAN_TELEPORT");
+                        XSound.play(other, "ENDERMAN_TELEPORT");
                         player.teleport(otherLocation);
-                        XSound.play(player,"ENDERMAN_TELEPORT");
+                        XSound.play(player, "ENDERMAN_TELEPORT");
 
                         player.sendMessage(ConfigFile.SWAPPED);
                         event.setCancelled(true);
@@ -354,6 +355,32 @@ public class InventoryClickListener implements Listener {
                         event.setCancelled(true);
                     }
                     break;
+                case 30:
+                    if (isPlayerOnline(other, player, event)) {
+                        PlayerInventory otherInventory = other.getInventory();
+
+                        if (otherInventory.getHelmet() == null || otherInventory.getHelmet().getType() == Material.AIR) {
+                            otherInventory.setHelmet(new ItemStack(Material.PUMPKIN));
+                        } else {
+                            if (otherInventory.firstEmpty() == -1) {
+                                other.getLocation().getWorld().dropItemNaturally(other.getLocation(), otherInventory.getHelmet());
+                            } else {
+                                otherInventory.setItem(otherInventory.firstEmpty(), otherInventory.getHelmet());
+                            }
+                            otherInventory.setHelmet(new ItemStack(Material.PUMPKIN));
+                        }
+                        player.sendMessage(ConfigFile.PUT_ON_PUMPKIN);
+                        event.setCancelled(true);
+                    }
+                    break;
+//                case 31:
+//                    if (isPlayerOnline(other, player, event)) {
+//                        if (trolledUser.isDiamondsUnderPlayer()) trolledUser.setDiamondsUnderPlayer(false);
+//                        trolledUser.setDiamondsUnderPlayer(true);
+//                        player.sendMessage(ConfigFile.SET_DIAMOND_UNDER_PLAYER);
+//                        event.setCancelled(true);
+//                    }
+//                    break;
                 default:
                     event.setCancelled(true);
                     break;
