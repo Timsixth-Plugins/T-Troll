@@ -14,7 +14,6 @@ public class TrolledUserProperties {
     private boolean fakeAdmin;
     private int level;
     private float exp;
-//    private boolean diamondsUnderPlayer;
     private final ItemStack[] inventory;
     private final ItemStack[] armor;
 

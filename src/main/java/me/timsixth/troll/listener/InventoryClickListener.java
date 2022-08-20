@@ -373,14 +373,6 @@ public class InventoryClickListener implements Listener {
                         event.setCancelled(true);
                     }
                     break;
-//                case 31:
-//                    if (isPlayerOnline(other, player, event)) {
-//                        if (trolledUser.isDiamondsUnderPlayer()) trolledUser.setDiamondsUnderPlayer(false);
-//                        trolledUser.setDiamondsUnderPlayer(true);
-//                        player.sendMessage(ConfigFile.SET_DIAMOND_UNDER_PLAYER);
-//                        event.setCancelled(true);
-//                    }
-//                    break;
                 default:
                     event.setCancelled(true);
                     break;

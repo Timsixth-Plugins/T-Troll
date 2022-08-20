@@ -43,7 +43,6 @@ public class InventoryManager {
         ItemStack map = ItemUtil.createItem(new ItemStack(Material.MAP), ConfigFile.GUI_PREFIX + " &7Sends fake join message to player");
         ItemStack chest = ItemUtil.createItem(new ItemStack(Material.CHEST), ConfigFile.GUI_PREFIX + " &7Opens players inventory");
         ItemStack pumpkin = ItemUtil.createItem(new ItemStack(Material.PUMPKIN), ConfigFile.GUI_PREFIX + " &7Put on pumpkin on trolled player's head ");
-        //ItemStack diamondOre = ItemUtil.createItem(new ItemStack(Material.DIAMOND_ORE), ConfigFile.GUI_PREFIX + " ");
 
         inv.setItem(0, tnt);
         inv.setItem(1, fakeAdmin);
@@ -76,8 +75,6 @@ public class InventoryManager {
         inv.setItem(28, map);
         inv.setItem(29, chest);
         inv.setItem(30, pumpkin);
-       // inv.setItem(31,diamondOre);
-
         return inv;
     }
 
