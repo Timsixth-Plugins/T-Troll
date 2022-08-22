@@ -2,6 +2,7 @@ package me.timsixth.troll.command;
 
 import lombok.RequiredArgsConstructor;
 import me.timsixth.troll.config.ConfigFile;
+import me.timsixth.troll.config.Messages;
 import me.timsixth.troll.manager.InventoryManager;
 import me.timsixth.troll.manager.TrollManager;
 import me.timsixth.troll.model.Troll;
@@ -20,17 +21,20 @@ public class TrollCommand implements CommandExecutor {
     private final InventoryManager inventoryManager;
     private final TrollManager trollManager;
 
+    private final Messages messages;
+    private final ConfigFile configFile;
+
     @Override
     public boolean onCommand(CommandSender sender, Command arg1, String arg2, String[] args) {
         if (sender instanceof Player) {
-            if (!sender.hasPermission(ConfigFile.PERMISSION)) {
-                sender.sendMessage(ConfigFile.NO_PERMISSION);
+            if (!sender.hasPermission(configFile.getPermission())) {
+                sender.sendMessage(messages.getNoPermission());
                 return true;
             }
             Player player = (Player) sender;
 
             if (args.length == 0) {
-                player.sendMessage(ConfigFile.CORRECT_USE);
+                player.sendMessage(messages.getCorrectUse());
                 return true;
             } else if (args.length == 1) {
                 Player other = Bukkit.getPlayerExact(args[0]);
@@ -41,7 +45,7 @@ public class TrollCommand implements CommandExecutor {
                     trollManager.createNewTroll(new Troll(player.getUniqueId(), other.getUniqueId(), new TrolledUserProperties()));
                     player.openInventory(inventoryManager.showTrollingInventory());
                 } else {
-                    player.sendMessage(ConfigFile.OFFLINEPLAYER);
+                    player.sendMessage(messages.getOfflinePlayer());
                 }
                 return true;
             }

@@ -16,6 +16,7 @@ import java.util.Optional;
 public class PlayerChatListener implements Listener {
 
     private final TrollManager trollManager;
+    private final ConfigFile configFile;
 
     @EventHandler
     private void onChat(AsyncPlayerChatEvent event) {
@@ -29,7 +30,7 @@ public class PlayerChatListener implements Listener {
         Troll troll = trollByVictimUuid.get();
 
         if (troll.getTrolledUser().isFakeAdmin()) {
-            String msg = ConfigFile.FAKEADMIN_FORMAT;
+            String msg = configFile.getFakeAdminFormat();
             msg = msg.replace("{NICK}", player.getName());
             msg = msg.replace("{MESSAGE}", event.getMessage());
             msg = msg.replace(">>", "»");
