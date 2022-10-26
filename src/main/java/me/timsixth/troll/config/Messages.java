@@ -1,56 +1,64 @@
 package me.timsixth.troll.config;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import me.timsixth.troll.TrollPlugin;
 import me.timsixth.troll.util.ChatUtil;
 
 @Getter
 public class Messages {
-
-    private final String correctUse;
-    private final String noPermission;
-    private final String blowup;
-    private final String adminNow;
-    private final String gaveAdmin;
-    private final String gaveOp;
-    private final String frezzedPlayer;
-    private final String unfreezed;
-    private final String lauchedPlayer;
-    private final String sendCrash;
-    private final String offlinePlayer;
-    private final String fakeBan;
-    private final String bannedPlayer;
-    private final String spawnWeb;
-    private final String spawnAnvil;
-    private final String spawnWater;
-    private final String spawnLava;
-    private final String spawnZombie;
-    private final String spawnArrow;
-    private final String strikeLightning;
-    private final String poisoned;
-    private final String rotated;
-    private final String creeperHiss;
-    private final String fakeExp;
-    private final String speed;
-    private final String scare;
-    private final String teleport;
-    private final String woodenPick;
-    private final String woodenPickOther;
-    private final String spawnTp;
-    private final String filledInv;
-    private final String noHandItem;
-    private final String droppedHandItem;
-    private final String spammed;
-    private final String swapped;
-    private final String drunk;
-    private final String drunkOther;
-    private final String fakeJoin;
-    private final String fakeJoinOther;
-    private final String openInv;
-
-    private final String putOnPumpkin;
+    @Getter(value = AccessLevel.NONE)
+    private final TrollPlugin trollPlugin;
+    private String correctUse;
+    private String noPermission;
+    private String blowup;
+    private String adminNow;
+    private String gaveAdmin;
+    private String gaveOp;
+    private String frezzedPlayer;
+    private String unfreezed;
+    private String lauchedPlayer;
+    private String sendCrash;
+    private String offlinePlayer;
+    private String fakeBan;
+    private String bannedPlayer;
+    private String spawnWeb;
+    private String spawnAnvil;
+    private String spawnWater;
+    private String spawnLava;
+    private String spawnZombie;
+    private String spawnArrow;
+    private String strikeLightning;
+    private String poisoned;
+    private String rotated;
+    private String creeperHiss;
+    private String fakeExp;
+    private String speed;
+    private String scare;
+    private String teleport;
+    private String woodenPick;
+    private String woodenPickOther;
+    private String spawnTp;
+    private String filledInv;
+    private String noHandItem;
+    private String droppedHandItem;
+    private String spammed;
+    private String swapped;
+    private String drunk;
+    private String drunkOther;
+    private String fakeJoin;
+    private String fakeJoinOther;
+    private String openInv;
+    private String putOnPumpkin;
+    private String adminCorrectUse;
+    private String filesReloaded;
 
     public Messages(TrollPlugin trollPlugin) {
+        this.trollPlugin = trollPlugin;
+        loadMessages();
+    }
+
+    void loadMessages() {
         correctUse = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.correctuse"));
         noPermission = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.nopermission"));
         blowup = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.blowup"));
@@ -92,5 +100,7 @@ public class Messages {
         fakeJoinOther = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.fakejoinother"));
         openInv = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.openinv"));
         putOnPumpkin = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.put_on_pumpkin"));
+        adminCorrectUse = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.admin_correct_use"));
+        filesReloaded = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.files_reloaded"));
     }
 }

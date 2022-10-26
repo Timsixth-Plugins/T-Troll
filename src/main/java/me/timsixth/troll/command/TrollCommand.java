@@ -50,7 +50,7 @@ public class TrollCommand implements CommandExecutor {
                 return true;
             }
         } else {
-            System.out.println("Only players can use this command");
+            Bukkit.getLogger().info("Only players can use this command");
         }
         return true;
     }

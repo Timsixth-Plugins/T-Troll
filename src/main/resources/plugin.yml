@@ -1,6 +1,9 @@
 name: T-Troll
-version: 1.9.1
+version: 1.9.2
 authors: [timsixth,Hopa2008]
 main: me.timsixth.troll.TrollPlugin
 commands:
   troll:
+  atroll:
+    aliases:
+      - admintroll

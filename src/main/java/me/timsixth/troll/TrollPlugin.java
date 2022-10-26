@@ -1,11 +1,13 @@
 package me.timsixth.troll;
 
+import me.timsixth.troll.command.AdminTrollCommand;
 import me.timsixth.troll.command.TrollCommand;
 import me.timsixth.troll.config.ConfigFile;
 import me.timsixth.troll.config.Messages;
 import me.timsixth.troll.listener.*;
 import me.timsixth.troll.manager.InventoryManager;
 import me.timsixth.troll.manager.TrollManager;
+import me.timsixth.troll.tabcompleter.AdminTrollCommandTabCompleter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,12 +22,14 @@ public class TrollPlugin extends JavaPlugin {
     public void onEnable() {
         getConfig().options().copyDefaults(true);
         saveConfig();
-        configFile = new ConfigFile(this);
         messages = new Messages(this);
+        configFile = new ConfigFile(this,messages);
         InventoryManager inventoryManager = new InventoryManager(configFile);
         trollManager = new TrollManager(this);
 
         getCommand("troll").setExecutor(new TrollCommand(inventoryManager, trollManager,messages,configFile));
+        getCommand("atroll").setExecutor(new AdminTrollCommand(configFile,messages));
+        getCommand("atroll").setTabCompleter(new AdminTrollCommandTabCompleter());
         registerListeners();
     }
 

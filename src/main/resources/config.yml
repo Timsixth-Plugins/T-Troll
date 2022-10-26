@@ -5,8 +5,10 @@ fakeop_format: '&7[Console: Opped {NICK}]'
 power_explosion: 2
 gui_prefix: '&9&l&9&lTroll &8-'
 messages:
+  admin_correct_use: '&7[ &9T-Troll &7] &cCorrect use: /atroll reload'
   correctuse: '&7[ &9T-Troll &7] &cCorrect use: /troll <player>'
   nopermission: '&7[ &9T-Troll &7] &cYou don''t have permission'
+  files_reloaded: '&aConfig have been reloaded successfully'
   blowup: '&7[ &9T-Troll &7] &7You were blow up the player'
   adminnow: '&7[ &9T-Troll &7] &aYou are admin now! Congratulations!'
   gaveadmin: '&7[ &9T-Troll &7] &7You gave fake admin to {NICK}'
