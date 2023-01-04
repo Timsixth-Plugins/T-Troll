@@ -8,6 +8,7 @@ import me.timsixth.troll.listener.*;
 import me.timsixth.troll.manager.InventoryManager;
 import me.timsixth.troll.manager.TrollManager;
 import me.timsixth.troll.tabcompleter.AdminTrollCommandTabCompleter;
+import me.timsixth.troll.version.VersionChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -31,6 +32,8 @@ public class TrollPlugin extends JavaPlugin {
         getCommand("atroll").setExecutor(new AdminTrollCommand(configFile,messages));
         getCommand("atroll").setTabCompleter(new AdminTrollCommandTabCompleter());
         registerListeners();
+
+        new VersionChecker(this).checkVersion();
     }
 
     private void registerListeners() {
