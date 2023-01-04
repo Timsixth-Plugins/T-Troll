@@ -42,5 +42,6 @@ public class TrollPlugin extends JavaPlugin {
         pluginManager.registerEvents(new PlayerMoveListener(trollManager), this);
         pluginManager.registerEvents(new InventoryClickListener(trollManager,this,messages,configFile), this);
         pluginManager.registerEvents(new PlayerQuitListener(trollManager), this);
+        pluginManager.registerEvents(new PlayerVehicleListener(trollManager,this,messages),this);
     }
 }

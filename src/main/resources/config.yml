@@ -4,6 +4,14 @@ fakeadmin_format: '&c&lAdmin &f{NICK} &8>> &7{MESSAGE}'
 fakeop_format: '&7[Console: Opped {NICK}]'
 power_explosion: 2
 gui_prefix: '&9&l&9&lTroll &8-'
+hackertrollSword:
+  LoreEnchantLine: '&7&kSmilemyfriend&f &7I'
+  LoreThirdLine: '&5Sword full of the secrets.'
+  itemName: '&5&lHacker Sword'
+hackertrollBook:
+  bookTitle: '&8Addressed to {NICK}'
+  author: '&0&kabcdefg'
+  content: 'Hello. I want give you secret item when you type this code in the chat: &7{CODE}'
 messages:
   admin_correct_use: '&7[ &9T-Troll &7] &cCorrect use: /atroll reload'
   correctuse: '&7[ &9T-Troll &7] &cCorrect use: /troll <player>'
@@ -37,6 +45,7 @@ messages:
   wooden_pick: '&7[ &9T-Troll &7] &7You teleported your victim 20 block below his current location with a wooden pickaxe.'
   wooden_pick_other: '&7[ &9T-Troll &7] Here''s a wooden pickaxe, dig yourself up!'
   spawntp: '&7[ &9T-Troll &7] You teleported player to the world spawnpoint'
+  spawntpNetherError: '&7[ &9T-Troll &7] &cYou can do this only when player is in overworld.'
   filledinv: '&7[ &9T-Troll &7] You cleared your victims inventory'
   nohanditem: '&7[ &9T-Troll &7] Player has no item in his hand'
   droppedhanditem: '&7[ &9T-Troll &7] Dropped item from players hand'
@@ -48,3 +57,11 @@ messages:
   fakejoinother: '&eHerobrine joined the game'
   openinv: '&7[ &9T-Troll &7] Opened players inventory'
   put_on_pumpkin: '&7[ &9T-Troll &7] You have put on pumpkin on trolled player''s head'
+  slime_name: '&a&lB.O.B.'
+  newFriend: '&7[ &9T-Troll &7] Slime has been spawned'
+  you_get_slime: '&a&lYou have new friend!'
+  minecart_toTroller: '&7[ &9T-Troll &7] Player have 10 seconds to get in minecart.'
+  minecart_toVictim: '&9&lIt''s time to ride!'
+  minecart_taskDone: "&e&lYay! You will recive a reward."
+  minecart_taskNotDone: "&9You don't get in minecart on time..."
+  hackerTroll: '&7[ &9T-Troll &7] The player got the book.'

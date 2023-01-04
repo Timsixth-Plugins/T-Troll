@@ -27,12 +27,12 @@ public class InventoryManager {
         ItemStack anvil = ItemUtil.createItem(new ItemStack(Material.ANVIL),  configFile.getGuiPrefix() + " &7Will spawn anvil above the player");
         ItemStack lavaBucket = ItemUtil.createItem(new ItemStack(Material.LAVA_BUCKET),  configFile.getGuiPrefix() + " &7Spawns lava under the player");
         ItemStack waterBucket = ItemUtil.createItem(new ItemStack(Material.WATER_BUCKET),  configFile.getGuiPrefix() + " &7Spawns water under the player");
-        ItemStack zombieMonsterEgg = ItemUtil.createItem(new ItemStack(Material.MONSTER_EGG, 1, (short) 54),  configFile.getGuiPrefix() + "&9&lTroll &8- &7Spawns zombies at the player location");
+        ItemStack zombieMonsterEgg = ItemUtil.createItem(new ItemStack(Material.MONSTER_EGG, 1, (short) 54),  configFile.getGuiPrefix() + " &7Spawns zombies at the player location");
         ItemStack arrows = ItemUtil.createItem(new ItemStack(Material.ARROW),  configFile.getGuiPrefix() + " &7Spawns few arrows above the player");
         ItemStack lightning = ItemUtil.createItem(new ItemStack(Material.FLINT_AND_STEEL),  configFile.getGuiPrefix() + " &7Strikes the player with lightning");
         ItemStack poisonedPotato = ItemUtil.createItem(new ItemStack(Material.POISONOUS_POTATO),  configFile.getGuiPrefix() + " &7Make your victim suffer from poison");
         ItemStack compass = ItemUtil.createItem(new ItemStack(Material.COMPASS),  configFile.getGuiPrefix() + " &7Rotate your victim 180°");
-        ItemStack creeperMonsterEgg = ItemUtil.createItem(new ItemStack(Material.MONSTER_EGG, 1, (short) 50),  configFile.getGuiPrefix() + "&9&lTroll &8- &7Terrify your victim with creeper sound");
+        ItemStack creeperMonsterEgg = ItemUtil.createItem(new ItemStack(Material.MONSTER_EGG, 1, (short) 50),  configFile.getGuiPrefix() + " &7Terrify your victim with creeper sound");
         ItemStack expBottle = ItemUtil.createItem(new ItemStack(Material.EXP_BOTTLE),  configFile.getGuiPrefix() + " &7Take exp from your victim for 10 seconds");
         ItemStack feather = ItemUtil.createItem(new ItemStack(Material.FEATHER),  configFile.getGuiPrefix() + " &7Apply uncontrollable speed to your victim");
         ItemStack fireball = ItemUtil.createItem(new ItemStack(Material.FIREBALL),  configFile.getGuiPrefix() + " &7Scare your victim with loud sound");
@@ -47,6 +47,9 @@ public class InventoryManager {
         ItemStack map = ItemUtil.createItem(new ItemStack(Material.MAP),  configFile.getGuiPrefix() + " &7Sends fake join message to player");
         ItemStack chest = ItemUtil.createItem(new ItemStack(Material.CHEST),  configFile.getGuiPrefix() + " &7Opens players inventory");
         ItemStack pumpkin = ItemUtil.createItem(new ItemStack(Material.PUMPKIN),  configFile.getGuiPrefix() + " &7Put on pumpkin on trolled player's head ");
+        ItemStack slimeball = ItemUtil.createItem(new ItemStack(Material.SLIME_BALL),configFile.getGuiPrefix() + " &7Spawns a slime near player");
+        ItemStack minecart = ItemUtil.createItem(new ItemStack(Material.MINECART),configFile.getGuiPrefix() + " &7Place rail near player, and invite him to fun.");
+        ItemStack book = ItemUtil.createItem(new ItemStack(Material.BOOK),  configFile.getGuiPrefix() + " &7Gives player a book with code for hacker sword (with hidden fire aspect)");
 
         inv.setItem(0, tnt);
         inv.setItem(1, fakeAdmin);
@@ -79,6 +82,9 @@ public class InventoryManager {
         inv.setItem(28, map);
         inv.setItem(29, chest);
         inv.setItem(30, pumpkin);
+        inv.setItem(31, slimeball);
+        inv.setItem(32, minecart);
+        inv.setItem(33, book);
 
         return inv;
     }

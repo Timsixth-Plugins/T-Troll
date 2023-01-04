@@ -18,6 +18,12 @@ public class ConfigFile {
     private String fakeOpFormat;
     private float powerOfExplosion;
     private String guiPrefix;
+    private String hT_enchantLoreLine;
+    private String hT_thirdLoreLine;
+    private String hT_swordName;
+    private String hT_bookTitle;
+    private String hT_bookAuthor;
+    private String hT_bookContent;
 
     public ConfigFile(TrollPlugin trollPlugin,Messages messages) {
         this.trollPlugin = trollPlugin;
@@ -32,6 +38,12 @@ public class ConfigFile {
         fakeAdminFormat = ChatUtil.chatColor(trollPlugin.getConfig().getString("fakeadmin_format"));
         fakeOpFormat = ChatUtil.chatColor(trollPlugin.getConfig().getString("fakeop_format"));
         guiPrefix = ChatUtil.chatColor(trollPlugin.getConfig().getString("gui_prefix"));
+        hT_enchantLoreLine = ChatUtil.chatColor(trollPlugin.getConfig().getString("hackertrollSword.LoreEnchantLine"));
+        hT_thirdLoreLine = ChatUtil.chatColor(trollPlugin.getConfig().getString("hackertrollSword.LoreThirdLine"));
+        hT_swordName = ChatUtil.chatColor(trollPlugin.getConfig().getString("hackertrollSword.itemName"));
+        hT_bookTitle = ChatUtil.chatColor(trollPlugin.getConfig().getString("hackertrollBook.bookTitle"));
+        hT_bookAuthor = ChatUtil.chatColor(trollPlugin.getConfig().getString("hackertrollBook.author"));
+        hT_bookContent = ChatUtil.chatColor(trollPlugin.getConfig().getString("hackertrollBook.content"));
     }
     public void reloadConfig(){
         trollPlugin.reloadConfig();

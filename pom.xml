@@ -6,7 +6,7 @@
 
     <groupId>me.timsixth</groupId>
     <artifactId>T-Troll</artifactId>
-    <version>1.10</version>
+    <version>1.11</version>
     <repositories>
         <repository>
             <id>spigot-repo</id>

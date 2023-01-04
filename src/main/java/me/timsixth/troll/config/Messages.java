@@ -39,6 +39,7 @@ public class Messages {
     private String woodenPick;
     private String woodenPickOther;
     private String spawnTp;
+    private String onlyInOverworld;
     private String filledInv;
     private String noHandItem;
     private String droppedHandItem;
@@ -52,6 +53,14 @@ public class Messages {
     private String putOnPumpkin;
     private String adminCorrectUse;
     private String filesReloaded;
+    private String slimeName;
+    private String youGetSlime;
+    private String newFriend;
+    private String minecartToTroller;
+    private String minecartToVictim;
+    private String minecartDone;
+    private String minecartNotDone;
+    private String hackerTroll;
 
     public Messages(TrollPlugin trollPlugin) {
         this.trollPlugin = trollPlugin;
@@ -89,6 +98,7 @@ public class Messages {
         woodenPick = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.wooden_pick"));
         woodenPickOther = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.wooden_pick_other"));
         spawnTp = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.spawntp"));
+        onlyInOverworld = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.spawntpNetherError"));
         filledInv = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.filledinv"));
         noHandItem = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.nohanditem"));
         droppedHandItem = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.droppedhanditem"));
@@ -100,6 +110,14 @@ public class Messages {
         fakeJoinOther = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.fakejoinother"));
         openInv = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.openinv"));
         putOnPumpkin = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.put_on_pumpkin"));
+        slimeName = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.slime_name"));
+        newFriend = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.newFriend"));
+        youGetSlime = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.you_get_slime"));
+        minecartToTroller = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.minecart_toTroller"));
+        minecartToVictim = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.minecart_toVictim"));
+        minecartDone = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.minecart_taskDone"));
+        minecartNotDone = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.minecart_taskNotDone"));
+        hackerTroll = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.hackerTroll"));
         adminCorrectUse = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.admin_correct_use"));
         filesReloaded = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.files_reloaded"));
     }
