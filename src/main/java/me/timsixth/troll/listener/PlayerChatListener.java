@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import me.timsixth.troll.config.ConfigFile;
 import me.timsixth.troll.manager.TrollManager;
 import me.timsixth.troll.model.Troll;
-import me.timsixth.troll.util.ChatUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -67,8 +66,8 @@ public class PlayerChatListener implements Listener {
         ItemStack sword = new ItemStack(Material.WOOD_SWORD,1);
         sword.addUnsafeEnchantment(Enchantment.FIRE_ASPECT,2);
         ItemMeta meta = sword.getItemMeta();
-        meta.setLore(Arrays.asList(configFile.getHT_enchantLoreLine(),"", configFile.getHT_thirdLoreLine()));
-        meta.setDisplayName(configFile.getHT_swordName());
+        meta.setLore(Arrays.asList(configFile.getHackerTrollEnchantLoreLine(),"", configFile.getHackerTrollThirdLoreLine()));
+        meta.setDisplayName(configFile.getHackerTrollSwordName());
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         sword.setItemMeta(meta);
         return sword;

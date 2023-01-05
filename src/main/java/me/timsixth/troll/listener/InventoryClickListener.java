@@ -29,7 +29,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.Random;
 
@@ -380,13 +380,6 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 31:
                     if (isPlayerOnline(other, player, event)) {
-                        //if (isPlayerOnline(other, player, event)) {
-                        //                        other.getLocation().getWorld().spawnEntity(other.getLocation().add(0.0, 0, 1), EntityType.ZOMBIE);
-                        //                        other.getLocation().getWorld().spawnEntity(other.getLocation().add(0.1, 0, 0), EntityType.ZOMBIE);
-                        //                        other.getLocation().getWorld().spawnEntity(other.getLocation().subtract(1.0, 0, 1), EntityType.ZOMBIE);
-                        //                        player.sendMessage(messages.getSpawnZombie());
-                        //                        event.setCancelled(true);
-                        //                    }
                         Slime slimeEntity = (Slime) other.getLocation().getWorld().spawnEntity(other.getLocation().add(0.5,1,0), EntityType.SLIME);
                         slimeEntity.setCustomName(messages.getSlimeName());
                         other.sendMessage(messages.getNewFriend());
@@ -418,7 +411,7 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 33:
                     if(isPlayerOnline(other,player,event)) {
-                        if(!(configFile.getHT_bookContent().contains("{CODE}"))) {
+                        if(!(configFile.getHackerTrollBookContent().contains("{CODE}"))) {
                             player.sendMessage(ChatColor.DARK_RED + "Not configured. Messages.bookContent must include " + ChatColor.GRAY + "\"{CODE}\"");
                             event.setCancelled(true);
                             return;
@@ -434,9 +427,9 @@ public class InventoryClickListener implements Listener {
 
                         ItemStack writtenBook = new ItemStack(Material.WRITTEN_BOOK);
                         BookMeta bookMeta = (BookMeta) writtenBook.getItemMeta();
-                        bookMeta.setTitle(configFile.getHT_bookTitle().replace("{NICK}",other.getName()));
-                        bookMeta.setAuthor(configFile.getHT_bookAuthor());
-                        bookMeta.setPages(Arrays.asList(configFile.getHT_bookContent().replace("{CODE}",code+"C")));
+                        bookMeta.setTitle(configFile.getHackerTrollBookTitle().replace("{NICK}",other.getName()));
+                        bookMeta.setAuthor(configFile.getHackerTrollBookAuthor());
+                        bookMeta.setPages(Collections.singletonList(configFile.getHackerTrollBookContent().replace("{CODE}", code + "C")));
                         writtenBook.setItemMeta(bookMeta);
 
                         player.sendMessage(messages.getHackerTroll());

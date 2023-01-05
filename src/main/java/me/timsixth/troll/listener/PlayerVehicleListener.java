@@ -1,16 +1,13 @@
 package me.timsixth.troll.listener;
 
 import lombok.RequiredArgsConstructor;
-import me.timsixth.troll.TrollPlugin;
 import me.timsixth.troll.config.Messages;
 import me.timsixth.troll.manager.TrollManager;
 import me.timsixth.troll.model.Troll;
-import me.timsixth.troll.util.ItemUtil;
 import me.timsixth.troll.util.XSound;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Vehicle;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.vehicle.VehicleEnterEvent;
@@ -22,8 +19,6 @@ import java.util.Optional;
 public class PlayerVehicleListener implements Listener {
 
     private final TrollManager trollManager;
-    private final TrollPlugin trollPlugin;
-
     private final Messages messages;
 
     @EventHandler
