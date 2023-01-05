@@ -38,7 +38,7 @@ public class TrollPlugin extends JavaPlugin {
 
     private void registerListeners() {
         PluginManager pluginManager = Bukkit.getPluginManager();
-        pluginManager.registerEvents(new PlayerChatListener(trollManager,configFile), this);
+        pluginManager.registerEvents(new PlayerChatListener(trollManager,configFile,this), this);
         pluginManager.registerEvents(new PlayerMoveListener(trollManager), this);
         pluginManager.registerEvents(new InventoryClickListener(trollManager,this,messages,configFile), this);
         pluginManager.registerEvents(new PlayerQuitListener(trollManager), this);

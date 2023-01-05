@@ -1,6 +1,7 @@
 package me.timsixth.troll.listener;
 
 import lombok.RequiredArgsConstructor;
+import me.timsixth.troll.TrollPlugin;
 import me.timsixth.troll.config.ConfigFile;
 import me.timsixth.troll.manager.TrollManager;
 import me.timsixth.troll.model.Troll;
@@ -26,6 +27,7 @@ public class PlayerChatListener implements Listener {
 
     private final TrollManager trollManager;
     private final ConfigFile configFile;
+    private final TrollPlugin trollPlugin;
 
     @EventHandler
     private void onChat(AsyncPlayerChatEvent event) {
@@ -37,14 +39,14 @@ public class PlayerChatListener implements Listener {
             return;
         }
         Troll troll = trollByVictimUuid.get();
-        if(event.getMessage().equalsIgnoreCase(troll.getTrolledUser().getHackerTrollCode())) {
+        if (event.getMessage().equalsIgnoreCase(troll.getTrolledUser().getHackerTrollCode())) {
 
             if (otherInventory.firstEmpty() == -1) {
                 player.getLocation().getWorld().dropItemNaturally(player.getLocation(), getSword());
             } else {
                 otherInventory.setItem(otherInventory.firstEmpty(), getSword());
             }
-            player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20, 0, true));
+            Bukkit.getScheduler().callSyncMethod(trollPlugin, () -> player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20, 0, true)));
 
             troll.getTrolledUser().setHackerTrollCode(null);
             event.setCancelled(true);
@@ -63,10 +65,10 @@ public class PlayerChatListener implements Listener {
     }
 
     private ItemStack getSword() {
-        ItemStack sword = new ItemStack(Material.WOOD_SWORD,1);
-        sword.addUnsafeEnchantment(Enchantment.FIRE_ASPECT,2);
+        ItemStack sword = new ItemStack(Material.WOOD_SWORD, 1);
+        sword.addUnsafeEnchantment(Enchantment.FIRE_ASPECT, 2);
         ItemMeta meta = sword.getItemMeta();
-        meta.setLore(Arrays.asList(configFile.getHackerTrollEnchantLoreLine(),"", configFile.getHackerTrollThirdLoreLine()));
+        meta.setLore(Arrays.asList(configFile.getHackerTrollEnchantLoreLine(), "", configFile.getHackerTrollThirdLoreLine()));
         meta.setDisplayName(configFile.getHackerTrollSwordName());
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         sword.setItemMeta(meta);
