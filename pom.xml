@@ -6,7 +6,7 @@
 
     <groupId>me.timsixth</groupId>
     <artifactId>T-Troll</artifactId>
-    <version>1.11</version>
+    <version>1.12</version>
     <repositories>
         <repository>
             <id>spigot-repo</id>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.24</version>
+            <version>1.18.26</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
