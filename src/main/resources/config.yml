@@ -12,6 +12,7 @@ hackertrollBook:
   bookTitle: '&8Addressed to {NICK}'
   author: '&0&kabcdefg'
   content: 'Hello. I want give you secret item when you type this code in the chat: &7{CODE}'
+victimMessage: true
 messages:
   admin_correct_use: '&7[ &9T-Troll &7] &cCorrect use: /atroll reload'
   correctuse: '&7[ &9T-Troll &7] &cCorrect use: /troll <player>'

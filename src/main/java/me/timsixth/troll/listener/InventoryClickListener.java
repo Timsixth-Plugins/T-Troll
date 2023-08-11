@@ -76,7 +76,7 @@ public class InventoryClickListener implements Listener {
                     if (isPlayerOnline(other, player, event)) {
                         String msgToOther = configFile.getFakeOpFormat().replace("{NICK}", other.getName());
                         String msgToSender = messages.getGaveOp().replace("{NICK}", other.getName());
-                        other.sendMessage(msgToOther);
+                        if(configFile.getVictimMessage()) other.sendMessage(msgToOther);
                         player.sendMessage(msgToSender);
                         event.setCancelled(true);
                     }
@@ -250,7 +250,7 @@ public class InventoryClickListener implements Listener {
                         other.getInventory().addItem(new ItemStack(Material.WOOD_PICKAXE));
 
                         player.sendMessage(messages.getWoodenPick());
-                        other.sendMessage(messages.getWoodenPickOther());
+                        if(configFile.getVictimMessage()) other.sendMessage(messages.getWoodenPickOther());
                         event.setCancelled(true);
                     }
                     break;
@@ -308,7 +308,7 @@ public class InventoryClickListener implements Listener {
 
                         for (int i = 1; i <= 30; ++i) {
                             int random = (int) (Math.random() * 9.99999999E8);
-                            other.sendMessage(ChatUtil.chatColor("&7" + random + random + random));
+                            if(configFile.getVictimMessage()) other.sendMessage(ChatUtil.chatColor("&7" + random + random + random));
                         }
                         player.sendMessage(messages.getSpammed());
                         event.setCancelled(true);
@@ -338,14 +338,14 @@ public class InventoryClickListener implements Listener {
                         other.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 400, 3, true));
 
                         player.sendMessage(messages.getDrunk());
-                        other.sendMessage(messages.getDrunkOther().replace("{NICK}", other.getName()));
+                        if(configFile.getVictimMessage()) other.sendMessage(messages.getDrunkOther().replace("{NICK}", other.getName()));
                         event.setCancelled(true);
                     }
                     break;
                 case 28:
                     if (isPlayerOnline(other, player, event)) {
 
-                        other.sendMessage(messages.getFakeJoinOther());
+                        if(configFile.getVictimMessage()) other.sendMessage(messages.getFakeJoinOther());
                         player.sendMessage(messages.getFakeJoin());
                         event.setCancelled(true);
                     }
@@ -382,7 +382,7 @@ public class InventoryClickListener implements Listener {
                     if (isPlayerOnline(other, player, event)) {
                         Slime slimeEntity = (Slime) other.getLocation().getWorld().spawnEntity(other.getLocation().add(0.5,1,0), EntityType.SLIME);
                         slimeEntity.setCustomName(messages.getSlimeName());
-                        other.sendMessage(messages.getNewFriend());
+                        if(configFile.getVictimMessage()) other.sendMessage(messages.getNewFriend());
                         player.sendMessage(messages.getYouGetSlime());
                         event.setCancelled(true);
                     }
@@ -446,7 +446,7 @@ public class InventoryClickListener implements Listener {
 
     private void switchFakeAdmin(Player player, TrolledUserProperties trolledUser, Player other, boolean fakeAdmin) {
         trolledUser.setFakeAdmin(fakeAdmin);
-        other.sendMessage(messages.getAdminNow());
+        if(configFile.getVictimMessage()) other.sendMessage(messages.getAdminNow());
         String msg = messages.getGaveAdmin().replace("{NICK}", other.getName());
         player.sendMessage(msg);
     }
@@ -455,9 +455,9 @@ public class InventoryClickListener implements Listener {
         trolledUser.setMinecartTroll(minecartTroll);
         if(minecartTroll) {
             player.sendMessage(messages.getMinecartToTroller());
-            other.sendMessage(messages.getMinecartToVictim());
+            if(configFile.getVictimMessage()) other.sendMessage(messages.getMinecartToVictim());
         }else{
-            other.sendMessage(messages.getMinecartNotDone());
+            if(configFile.getVictimMessage()) other.sendMessage(messages.getMinecartNotDone());
         }
 
     }
