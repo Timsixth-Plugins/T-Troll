@@ -15,7 +15,9 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.entity.*;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Slime;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -76,7 +78,7 @@ public class InventoryClickListener implements Listener {
                     if (isPlayerOnline(other, player, event)) {
                         String msgToOther = configFile.getFakeOpFormat().replace("{NICK}", other.getName());
                         String msgToSender = messages.getGaveOp().replace("{NICK}", other.getName());
-                        if(configFile.getVictimMessage()) other.sendMessage(msgToOther);
+                        other.sendMessage(msgToOther);
                         player.sendMessage(msgToSender);
                         event.setCancelled(true);
                     }
@@ -250,7 +252,7 @@ public class InventoryClickListener implements Listener {
                         other.getInventory().addItem(new ItemStack(Material.WOOD_PICKAXE));
 
                         player.sendMessage(messages.getWoodenPick());
-                        if(configFile.getVictimMessage()) other.sendMessage(messages.getWoodenPickOther());
+                        if (configFile.isVictimMessage()) other.sendMessage(messages.getWoodenPickOther());
                         event.setCancelled(true);
                     }
                     break;
@@ -259,7 +261,7 @@ public class InventoryClickListener implements Listener {
 
                         Location location = other.getLocation().getWorld().getSpawnLocation();
 
-                        if(location.getWorld().getName().contains("nether") || location.getWorld().getName().contains("end")) {
+                        if (location.getWorld().getName().contains("nether") || location.getWorld().getName().contains("end")) {
                             player.sendMessage(messages.getOnlyInOverworld());
                             event.setCancelled(true);
                             return;
@@ -308,7 +310,7 @@ public class InventoryClickListener implements Listener {
 
                         for (int i = 1; i <= 30; ++i) {
                             int random = (int) (Math.random() * 9.99999999E8);
-                            if(configFile.getVictimMessage()) other.sendMessage(ChatUtil.chatColor("&7" + random + random + random));
+                            other.sendMessage(ChatUtil.chatColor("&7" + random + random + random));
                         }
                         player.sendMessage(messages.getSpammed());
                         event.setCancelled(true);
@@ -338,14 +340,15 @@ public class InventoryClickListener implements Listener {
                         other.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 400, 3, true));
 
                         player.sendMessage(messages.getDrunk());
-                        if(configFile.getVictimMessage()) other.sendMessage(messages.getDrunkOther().replace("{NICK}", other.getName()));
+                        if (configFile.isVictimMessage())
+                            other.sendMessage(messages.getDrunkOther().replace("{NICK}", other.getName()));
                         event.setCancelled(true);
                     }
                     break;
                 case 28:
                     if (isPlayerOnline(other, player, event)) {
 
-                        if(configFile.getVictimMessage()) other.sendMessage(messages.getFakeJoinOther());
+                        other.sendMessage(messages.getFakeJoinOther());
                         player.sendMessage(messages.getFakeJoin());
                         event.setCancelled(true);
                     }
@@ -380,28 +383,28 @@ public class InventoryClickListener implements Listener {
                     break;
                 case 31:
                     if (isPlayerOnline(other, player, event)) {
-                        Slime slimeEntity = (Slime) other.getLocation().getWorld().spawnEntity(other.getLocation().add(0.5,1,0), EntityType.SLIME);
+                        Slime slimeEntity = (Slime) other.getLocation().getWorld().spawnEntity(other.getLocation().add(0.5, 1, 0), EntityType.SLIME);
                         slimeEntity.setCustomName(messages.getSlimeName());
-                        if(configFile.getVictimMessage()) other.sendMessage(messages.getNewFriend());
+                        if (configFile.isVictimMessage()) other.sendMessage(messages.getNewFriend());
                         player.sendMessage(messages.getYouGetSlime());
                         event.setCancelled(true);
                     }
                     break;
                 case 32:
-                    if (isPlayerOnline(other,player,event)) {
+                    if (isPlayerOnline(other, player, event)) {
                         PlayerInventory otherInventory = other.getInventory();
                         Location otherLocation = other.getLocation();
                         if (otherInventory.firstEmpty() == -1) {
-                            other.getLocation().getWorld().dropItemNaturally(other.getLocation(), new ItemStack(Material.MINECART,1));
-                        }else{
-                            otherInventory.addItem(new ItemStack(Material.MINECART,1));
+                            other.getLocation().getWorld().dropItemNaturally(other.getLocation(), new ItemStack(Material.MINECART, 1));
+                        } else {
+                            otherInventory.addItem(new ItemStack(Material.MINECART, 1));
                         }
                         otherLocation.getBlock().setType(Material.RAILS);
-                        toggleMinecartTroll(player,trolledUser,other,true);
+                        toggleMinecartTroll(player, trolledUser, other, true);
                         new BukkitRunnable() {
                             @Override
                             public void run() {
-                                if(trolledUser.isMinecartTroll()) {
+                                if (trolledUser.isMinecartTroll()) {
                                     toggleMinecartTroll(player, trolledUser, other, false);
                                 }
                             }
@@ -410,24 +413,24 @@ public class InventoryClickListener implements Listener {
                     }
                     break;
                 case 33:
-                    if(isPlayerOnline(other,player,event)) {
-                        if(!(configFile.getHackerTrollBookContent().contains("{CODE}"))) {
+                    if (isPlayerOnline(other, player, event)) {
+                        if (!(configFile.getHackerTrollBookContent().contains("{CODE}"))) {
                             player.sendMessage(ChatColor.DARK_RED + "Not configured. Messages.bookContent must include " + ChatColor.GRAY + "\"{CODE}\"");
                             event.setCancelled(true);
                             return;
                         }
-                        if(other.getInventory().firstEmpty() == -1) {
+                        if (other.getInventory().firstEmpty() == -1) {
                             player.sendMessage(ChatColor.GRAY + "Player has a full inventory.");
                             event.setCancelled(true);
                             return;
                         }
                         Random random = new Random();
                         int code = random.nextInt(995);
-                        trolledUser.setHackerTrollCode(code +"C");
+                        trolledUser.setHackerTrollCode(code + "C");
 
                         ItemStack writtenBook = new ItemStack(Material.WRITTEN_BOOK);
                         BookMeta bookMeta = (BookMeta) writtenBook.getItemMeta();
-                        bookMeta.setTitle(configFile.getHackerTrollBookTitle().replace("{NICK}",other.getName()));
+                        bookMeta.setTitle(configFile.getHackerTrollBookTitle().replace("{NICK}", other.getName()));
                         bookMeta.setAuthor(configFile.getHackerTrollBookAuthor());
                         bookMeta.setPages(Collections.singletonList(configFile.getHackerTrollBookContent().replace("{CODE}", code + "C")));
                         writtenBook.setItemMeta(bookMeta);
@@ -446,20 +449,19 @@ public class InventoryClickListener implements Listener {
 
     private void switchFakeAdmin(Player player, TrolledUserProperties trolledUser, Player other, boolean fakeAdmin) {
         trolledUser.setFakeAdmin(fakeAdmin);
-        if(configFile.getVictimMessage()) other.sendMessage(messages.getAdminNow());
+        if (configFile.isVictimMessage()) other.sendMessage(messages.getAdminNow());
         String msg = messages.getGaveAdmin().replace("{NICK}", other.getName());
         player.sendMessage(msg);
     }
 
     private void toggleMinecartTroll(Player player, TrolledUserProperties trolledUser, Player other, boolean minecartTroll) {
         trolledUser.setMinecartTroll(minecartTroll);
-        if(minecartTroll) {
+        if (minecartTroll) {
             player.sendMessage(messages.getMinecartToTroller());
-            if(configFile.getVictimMessage()) other.sendMessage(messages.getMinecartToVictim());
-        }else{
-            if(configFile.getVictimMessage()) other.sendMessage(messages.getMinecartNotDone());
+            if (configFile.isVictimMessage()) other.sendMessage(messages.getMinecartToVictim());
+        } else {
+            if (configFile.isVictimMessage()) other.sendMessage(messages.getMinecartNotDone());
         }
-
     }
 
 

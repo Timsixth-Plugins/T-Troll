@@ -4,6 +4,7 @@ fakeadmin_format: '&c&lAdmin &f{NICK} &8>> &7{MESSAGE}'
 fakeop_format: '&7[Console: Opped {NICK}]'
 power_explosion: 2
 gui_prefix: '&9&l&9&lTroll &8-'
+victimMessage: false
 hackertrollSword:
   LoreEnchantLine: '&7&kSmilemyfriend&f &7I'
   LoreThirdLine: '&5Sword full of the secrets.'
@@ -12,7 +13,6 @@ hackertrollBook:
   bookTitle: '&8Addressed to {NICK}'
   author: '&0&kabcdefg'
   content: 'Hello. I want give you secret item when you type this code in the chat: &7{CODE}'
-victimMessage: true
 messages:
   admin_correct_use: '&7[ &9T-Troll &7] &cCorrect use: /atroll reload'
   correctuse: '&7[ &9T-Troll &7] &cCorrect use: /troll <player>'

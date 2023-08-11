@@ -1,5 +1,6 @@
 package me.timsixth.troll;
 
+import me.timsixth.troll.bstats.Metrics;
 import me.timsixth.troll.command.AdminTrollCommand;
 import me.timsixth.troll.command.TrollCommand;
 import me.timsixth.troll.config.ConfigFile;
@@ -24,24 +25,26 @@ public class TrollPlugin extends JavaPlugin {
         getConfig().options().copyDefaults(true);
         saveConfig();
         messages = new Messages(this);
-        configFile = new ConfigFile(this,messages);
+        configFile = new ConfigFile(this, messages);
         InventoryManager inventoryManager = new InventoryManager(configFile);
         trollManager = new TrollManager(this);
 
-        getCommand("troll").setExecutor(new TrollCommand(inventoryManager, trollManager,messages,configFile));
-        getCommand("atroll").setExecutor(new AdminTrollCommand(configFile,messages));
+        getCommand("troll").setExecutor(new TrollCommand(inventoryManager, trollManager, messages, configFile));
+        getCommand("atroll").setExecutor(new AdminTrollCommand(configFile, messages));
         getCommand("atroll").setTabCompleter(new AdminTrollCommandTabCompleter());
         registerListeners();
 
         new VersionChecker(this).checkVersion();
+
+        new Metrics(this, 19466);
     }
 
     private void registerListeners() {
         PluginManager pluginManager = Bukkit.getPluginManager();
-        pluginManager.registerEvents(new PlayerChatListener(trollManager,configFile,this), this);
+        pluginManager.registerEvents(new PlayerChatListener(trollManager, configFile, this), this);
         pluginManager.registerEvents(new PlayerMoveListener(trollManager), this);
-        pluginManager.registerEvents(new InventoryClickListener(trollManager,this,messages,configFile), this);
+        pluginManager.registerEvents(new InventoryClickListener(trollManager, this, messages, configFile), this);
         pluginManager.registerEvents(new PlayerQuitListener(trollManager), this);
-        pluginManager.registerEvents(new PlayerVehicleListener(trollManager,messages),this);
+        pluginManager.registerEvents(new PlayerVehicleListener(trollManager, messages), this);
     }
 }

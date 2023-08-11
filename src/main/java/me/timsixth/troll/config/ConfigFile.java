@@ -24,7 +24,7 @@ public class ConfigFile {
     private String hackerTrollBookTitle;
     private String hackerTrollBookAuthor;
     private String hackerTrollBookContent;
-    private Boolean victimMessage;
+    private boolean victimMessage;
 
     public ConfigFile(TrollPlugin trollPlugin,Messages messages) {
         this.trollPlugin = trollPlugin;

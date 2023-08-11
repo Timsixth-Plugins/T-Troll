@@ -1,6 +1,6 @@
 name: T-Troll
-version: '1.12'
-authors: [timsixth,Hopa2008,Oraniacz]
+version: '1.13'
+authors: [timsixth,Hopa2008,Oraniacz,Rigoletto]
 main: me.timsixth.troll.TrollPlugin
 commands:
   troll:
