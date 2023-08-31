@@ -61,6 +61,11 @@ public class Messages {
     private String minecartDone;
     private String minecartNotDone;
     private String hackerTroll;
+    private String giveRandomPotionEffect;
+    private String giveGlassToPlayer;
+    private String getGlassButCanNotDrop;
+    private String giveRewardFromAdmin;
+    private String getRewardFromAdmin;
 
     public Messages(TrollPlugin trollPlugin) {
         this.trollPlugin = trollPlugin;
@@ -120,5 +125,10 @@ public class Messages {
         hackerTroll = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.hackerTroll"));
         adminCorrectUse = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.admin_correct_use"));
         filesReloaded = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.files_reloaded"));
+        giveRandomPotionEffect = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.give_random_potion_effect"));
+        giveGlassToPlayer = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.give_glass"));
+        getGlassButCanNotDrop = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.get_glass"));
+        giveRewardFromAdmin = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.give_reward"));
+        getRewardFromAdmin = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.get_reward_from_admin"));
     }
 }

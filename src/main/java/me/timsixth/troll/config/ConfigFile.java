@@ -25,6 +25,7 @@ public class ConfigFile {
     private String hackerTrollBookAuthor;
     private String hackerTrollBookContent;
     private boolean victimMessage;
+    private String itemRewardName;
 
     public ConfigFile(TrollPlugin trollPlugin,Messages messages) {
         this.trollPlugin = trollPlugin;
@@ -46,6 +47,7 @@ public class ConfigFile {
         hackerTrollBookAuthor = ChatUtil.chatColor(trollPlugin.getConfig().getString("hackertrollBook.author"));
         hackerTrollBookContent = ChatUtil.chatColor(trollPlugin.getConfig().getString("hackertrollBook.content"));
         victimMessage = trollPlugin.getConfig().getBoolean("victimMessage");
+        itemRewardName = ChatUtil.chatColor(trollPlugin.getConfig().getString("itemRewardName"));
     }
     public void reloadConfig(){
         trollPlugin.reloadConfig();

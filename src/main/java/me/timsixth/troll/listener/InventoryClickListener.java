@@ -10,7 +10,6 @@ import me.timsixth.troll.model.TrolledUserProperties;
 import me.timsixth.troll.util.ChatUtil;
 import me.timsixth.troll.util.XSound;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -31,9 +30,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @RequiredArgsConstructor
 public class InventoryClickListener implements Listener {
@@ -233,7 +230,6 @@ public class InventoryClickListener implements Listener {
 
                         while (location.getWorld().getBlockAt(location).getType() != Material.AIR) {
                             location = other.getLocation().add(random.nextInt(21), 1.0, random.nextInt(21));
-
                         }
 
                         other.teleport(location);
@@ -415,12 +411,12 @@ public class InventoryClickListener implements Listener {
                 case 33:
                     if (isPlayerOnline(other, player, event)) {
                         if (!(configFile.getHackerTrollBookContent().contains("{CODE}"))) {
-                            player.sendMessage(ChatColor.DARK_RED + "Not configured. Messages.bookContent must include " + ChatColor.GRAY + "\"{CODE}\"");
+                            player.sendMessage(ChatUtil.chatColor("&4Not configured. Messages.bookContent must include &7 \"{CODE}\""));
                             event.setCancelled(true);
                             return;
                         }
                         if (other.getInventory().firstEmpty() == -1) {
-                            player.sendMessage(ChatColor.GRAY + "Player has a full inventory.");
+                            player.sendMessage(ChatUtil.chatColor("&7Player has a full inventory."));
                             event.setCancelled(true);
                             return;
                         }
@@ -437,6 +433,68 @@ public class InventoryClickListener implements Listener {
 
                         player.sendMessage(messages.getHackerTroll());
                         player.getInventory().addItem(writtenBook);
+                        event.setCancelled(true);
+                    }
+                    break;
+                case 34:
+                    if (isPlayerOnline(other, player, event)) {
+                        Random random = new Random();
+                        List<PotionEffectType> types = Arrays.asList(PotionEffectType.values());
+
+                        PotionEffectType randomPotionEffectType = types.get(random.nextInt(types.size()));
+
+                        other.addPotionEffect(new PotionEffect(randomPotionEffectType, 600, 0, true));
+
+                        player.sendMessage(messages.getGiveRandomPotionEffect());
+                        event.setCancelled(true);
+                    }
+                    break;
+                case 35:
+                    if (isPlayerOnline(other, player, event)) {
+
+                        if (other.getInventory().firstEmpty() == -1) {
+                            player.sendMessage(ChatUtil.chatColor("&7Player has a full inventory."));
+                            event.setCancelled(true);
+                            return;
+                        }
+
+                        trolledUser.setCanNotDropGlass(true);
+
+                        other.getInventory().addItem(new ItemStack(Material.GLASS));
+                        if (configFile.isVictimMessage()) other.sendMessage(messages.getGetGlassButCanNotDrop());
+
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                if (trolledUser.isCanNotDropGlass()) {
+                                    trolledUser.setCanNotDropGlass(false);
+                                }
+                            }
+                        }.runTaskLater(trollPlugin, 10 * 20L);
+
+                        player.sendMessage(messages.getGiveGlassToPlayer());
+                        event.setCancelled(true);
+                    }
+                    break;
+                case 36:
+                    if (isPlayerOnline(other, player, event)) {
+
+                        if (other.getInventory().firstEmpty() == -1) {
+                            player.sendMessage(ChatUtil.chatColor("&7Player has a full inventory."));
+                            event.setCancelled(true);
+                            return;
+                        }
+
+                        ItemStack item = new ItemStack(Material.DIAMOND);
+                        ItemMeta itemMeta = item.getItemMeta();
+                        itemMeta.setDisplayName(configFile.getItemRewardName());
+                        item.setItemMeta(itemMeta);
+
+                        other.getInventory().addItem(item);
+
+                        if (configFile.isVictimMessage()) other.sendMessage(messages.getGetRewardFromAdmin());
+
+                        player.sendMessage(messages.getGiveRewardFromAdmin());
                         event.setCancelled(true);
                     }
                     break;

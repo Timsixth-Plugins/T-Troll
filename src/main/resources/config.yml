@@ -4,7 +4,8 @@ fakeadmin_format: '&c&lAdmin &f{NICK} &8>> &7{MESSAGE}'
 fakeop_format: '&7[Console: Opped {NICK}]'
 power_explosion: 2
 gui_prefix: '&9&l&9&lTroll &8-'
-victimMessage: false
+itemRewardName: '&aReward from Admin :)'
+victimMessage: true
 hackertrollSword:
   LoreEnchantLine: '&7&kSmilemyfriend&f &7I'
   LoreThirdLine: '&5Sword full of the secrets.'
@@ -66,3 +67,8 @@ messages:
   minecart_taskDone: "&e&lYay! You will recive a reward."
   minecart_taskNotDone: "&9You don't get in minecart on time..."
   hackerTroll: '&7[ &9T-Troll &7] The player got the book.'
+  give_random_potion_effect: '&7[ &9T-Troll &7] You have given a random potion effect to the trolled player'
+  give_glass: '&7[ &9T-Troll &7] You have given a glass block to the trolled player, the player can not drop the glass black for 10 seconds '
+  get_glass: '&7[ &9T-Troll &7] You have gotten glass block, but you can not drop glass them for 10 seconds'
+  give_reward: '&7[ &9T-Troll &7] You have given reward to the trolled player'
+  get_reward_from_admin: '&7[ &9T-Troll &7] You have gotten reward from the admin'

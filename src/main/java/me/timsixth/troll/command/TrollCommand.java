@@ -6,7 +6,6 @@ import me.timsixth.troll.config.Messages;
 import me.timsixth.troll.manager.InventoryManager;
 import me.timsixth.troll.manager.TrollManager;
 import me.timsixth.troll.model.Troll;
-import me.timsixth.troll.model.TrolledUserProperties;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -42,7 +41,7 @@ public class TrollCommand implements CommandExecutor {
                 Optional<Troll> trollBySenderUuid = trollManager.getTrollBySenderUuid(player.getUniqueId());
                 trollBySenderUuid.ifPresent(trollManager::removeTroll);
                 if (other != null) {
-                    trollManager.createNewTroll(new Troll(player.getUniqueId(), other.getUniqueId(), new TrolledUserProperties()));
+                    trollManager.createNewTroll(new Troll(player.getUniqueId(), other.getUniqueId()));
                     player.openInventory(inventoryManager.showTrollingInventory());
                 } else {
                     player.sendMessage(messages.getOfflinePlayer());

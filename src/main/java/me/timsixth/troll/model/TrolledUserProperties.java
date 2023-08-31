@@ -13,6 +13,7 @@ public class TrolledUserProperties {
     private boolean frozen;
     private boolean fakeAdmin;
     private boolean minecartTroll;
+    private boolean canNotDropGlass;
     private String hackerTrollCode;
     private int level;
     private float exp;

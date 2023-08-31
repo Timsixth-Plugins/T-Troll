@@ -35,9 +35,8 @@ public class PlayerChatListener implements Listener {
         Inventory otherInventory = player.getInventory();
         Optional<Troll> trollByVictimUuid = trollManager.getTrollByVictimUuid(player.getUniqueId());
 
-        if (!trollByVictimUuid.isPresent()) {
-            return;
-        }
+        if (!trollByVictimUuid.isPresent()) return;
+
         Troll troll = trollByVictimUuid.get();
         if (event.getMessage().equalsIgnoreCase(troll.getTrolledUser().getHackerTrollCode())) {
 
