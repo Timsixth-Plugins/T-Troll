@@ -1,19 +1,10 @@
 package me.timsixth.troll.model;
 
-import lombok.Getter;
+import org.bukkit.entity.Player;
 
-import java.util.UUID;
+public interface Troll {
 
-@Getter
-public class Troll {
+    void executeTroll(Player other, Player sender, TrolledUserProperties userProperties);
 
-    private final UUID senderUuid;
-    private final UUID victimUuid;
-    private final TrolledUserProperties trolledUser;
-
-    public Troll(UUID senderUuid, UUID victimUuid) {
-        this.senderUuid = senderUuid;
-        this.victimUuid = victimUuid;
-        this.trolledUser = new TrolledUserProperties();
-    }
+    String getName();
 }

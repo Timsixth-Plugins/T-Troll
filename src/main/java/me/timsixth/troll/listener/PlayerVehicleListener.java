@@ -2,8 +2,8 @@ package me.timsixth.troll.listener;
 
 import lombok.RequiredArgsConstructor;
 import me.timsixth.troll.config.Messages;
-import me.timsixth.troll.manager.TrollManager;
-import me.timsixth.troll.model.Troll;
+import me.timsixth.troll.manager.TrollProcessManager;
+import me.timsixth.troll.model.TrollProcess;
 import me.timsixth.troll.util.XSound;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -18,7 +18,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PlayerVehicleListener implements Listener {
 
-    private final TrollManager trollManager;
+    private final TrollProcessManager trollProcessManager;
     private final Messages messages;
 
     @EventHandler
@@ -26,12 +26,12 @@ public class PlayerVehicleListener implements Listener {
         if(event.getVehicle().getType().equals(EntityType.MINECART)){
             Player player = (Player) event.getEntered();
 
-            Optional<Troll> trollByVictimUuid = trollManager.getTrollByVictimUuid(player.getUniqueId());
+            Optional<TrollProcess> trollByVictimUuid = trollProcessManager.getTrollByVictimUuid(player.getUniqueId());
 
             if (!trollByVictimUuid.isPresent()) {
                 return;
             }
-            Troll troll = trollByVictimUuid.get();
+            TrollProcess troll = trollByVictimUuid.get();
 
             if (troll.getTrolledUser().isMinecartTroll()) {
                 troll.getTrolledUser().setMinecartTroll(false);

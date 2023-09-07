@@ -3,22 +3,23 @@ package me.timsixth.troll.command;
 import lombok.RequiredArgsConstructor;
 import me.timsixth.troll.config.ConfigFile;
 import me.timsixth.troll.config.Messages;
-import me.timsixth.troll.manager.InventoryManager;
-import me.timsixth.troll.manager.TrollManager;
-import me.timsixth.troll.model.Troll;
+import me.timsixth.troll.manager.TrollProcessManager;
+import me.timsixth.troll.model.TrollProcess;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import pl.timsixth.guilibrary.core.manager.YAMLMenuManager;
+import pl.timsixth.guilibrary.core.model.Menu;
 
 import java.util.Optional;
 
 @RequiredArgsConstructor
 public class TrollCommand implements CommandExecutor {
 
-    private final InventoryManager inventoryManager;
-    private final TrollManager trollManager;
+    private final YAMLMenuManager menuManager;
+    private final TrollProcessManager trollProcessManager;
 
     private final Messages messages;
     private final ConfigFile configFile;
@@ -38,11 +39,15 @@ public class TrollCommand implements CommandExecutor {
             } else if (args.length == 1) {
                 Player other = Bukkit.getPlayerExact(args[0]);
 
-                Optional<Troll> trollBySenderUuid = trollManager.getTrollBySenderUuid(player.getUniqueId());
-                trollBySenderUuid.ifPresent(trollManager::removeTroll);
+                Optional<TrollProcess> trollBySenderUuid = trollProcessManager.getTrollBySenderUuid(player.getUniqueId());
+                trollBySenderUuid.ifPresent(trollProcessManager::removeTroll);
                 if (other != null) {
-                    trollManager.createNewTroll(new Troll(player.getUniqueId(), other.getUniqueId()));
-                    player.openInventory(inventoryManager.showTrollingInventory());
+                    trollProcessManager.createNewTroll(new TrollProcess(player.getUniqueId(), other.getUniqueId()));
+                    Optional<Menu> menuOptional = menuManager.getMenuByName("trollsGui");
+
+                    if (!menuOptional.isPresent()) return true;
+
+                    player.openInventory(menuManager.createMenu(menuOptional.get()));
                 } else {
                     player.sendMessage(messages.getOfflinePlayer());
                 }

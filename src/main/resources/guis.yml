@@ -1,0 +1,266 @@
+guis:
+  trollsGui:
+    displayname: '&9&lTimsixthTroll'
+    size: 54
+    empty_slots:
+      material: BLACK_STAINED_GLASS_PANE
+    slots:
+      0:
+        material: TNT
+        displayname: '&9&l&9&lTroll &8- &7Give fake admin to player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'BLOW_UP'
+      1:
+        material: RED_DYE
+        displayname: '&9&l&9&lTroll &8- &7Give fake admin to player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'FAKE_ADMIN'
+      2:
+        material: COMMAND_BLOCK
+        displayname: '&9&l&9&lTroll &8- &7Give fake op to player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'FAKE_OP'
+      3:
+        material: ICE
+        displayname: '&9&l&9&lTroll &8- &7Freeze/UnFreeze the player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'FREEZE'
+      4:
+        material: REDSTONE_BLOCK
+        displayname: '&9&l&9&lTroll &8- &7Launch rocket with player in to cosmos'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'ROCKET_WITH_PLAYER'
+      5:
+        material: RED_DYE
+        displayname: '&9&l&9&lTroll &8-&7Give fake crash to player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'FAKE_CRASH'
+      6:
+        material: BARRIER
+        displayname: '&9&l&9&lTroll &8- &7Give fake ban to player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'FAKE_BAN'
+      7:
+        material: COBWEB
+        displayname: '&9&l&9&lTroll &8- &7Spawns webs under the player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'WEB'
+      8:
+        material: ANVIL
+        displayname: '&9&l&9&lTroll &8- &7Will spawn anvil above the player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'ANVIL'
+      9:
+        material: LAVA_BUCKET
+        displayname: '&9&l&9&lTroll &8- &7Spawns lava under the player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'LAVA'
+      10:
+        material: WATER_BUCKET
+        displayname: '&9&l&9&lTroll &8- &7Spawns water under the player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'WATER'
+      11:
+        material: ZOMBIE_SPAWN_EGG
+        displayname: '&9&l&9&lTroll &8- &7Spawns zombies at the player location'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'ZOMBIE'
+      12:
+        material: ARROW
+        displayname: '&9&l&9&lTroll &8- &7Spawns few arrows above the player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'ARROW_SPAM'
+      13:
+        material: FLINT_AND_STEEL
+        displayname: '&9&l&9&lTroll &8- &7Strikes the player with lightning'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'STRIKE_LIGHTNING'
+      14:
+        material: POISONOUS_POTATO
+        displayname: '&9&l&9&lTroll &8- &7Make your victim suffer from poison'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'POISON'
+      15:
+        material: COMPASS
+        displayname: '&9&l&9&lTroll &8- &7Rotate your victim 180°'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'ROTATE'
+      16:
+        material: CREEPER_SPAWN_EGG
+        displayname: '&9&l&9&lTroll &8- &7Terrify your victim with creeper sound'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'CREEPER_SOUND'
+      17:
+        material: EXPERIENCE_BOTTLE
+        displayname: '&9&l&9&lTroll &8- &7Take exp from your victim for 10 seconds'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'FAKE_EXP'
+      18:
+        material: FEATHER
+        displayname: '&9&l&9&lTroll &8- &7Apply uncontrollable speed to your victim'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'SPEED'
+      19:
+        material: FIRE_CHARGE
+        displayname: '&9&l&9&lTroll &8- &7Scare your victim with loud sound'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'SCARE'
+      20:
+        material: COMPASS
+        displayname: '&9&l&9&lTroll &8- &7Teleport your victim in random place within 20 blocks range'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'RANDOM_TELEPORT'
+      21:
+        material: WOODEN_PICKAXE
+        displayname: '&9&l&9&lTroll &8- &7Teleport your victim 20 blocks below his current location with wooden pickaxe'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'TELEPORT_UNDER_PLAYER'
+      22:
+        material: RED_BED
+        displayname: '&9&l&9&lTroll &8- &7Teleport your victim to overworld spawn point'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'SPAWN_TELEPORT'
+      23:
+        material: DIRT
+        displayname: '&9&l&9&lTroll &8- &7Clear your victims whole inventory for 10 seconds!"'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'FAKE_INVENTORY_CLEAR'
+      24:
+        material: STONE_PICKAXE
+        displayname: '&9&l&9&lTroll &8- &7Drop item in player''s hand'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'DROP_HAND_ITEM'
+      25:
+        material: PAPER
+        displayname: '&9&l&9&lTroll &8- &7Spams players chat'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'CHAT_SPAM'
+      26:
+        material: ENDER_EYE
+        displayname: '&9&l&9&lTroll &8- &7Swaps the positions with the player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'ENDERMAN_TELEPORT'
+      27:
+        material: POTION
+        displayname: '&9&l&9&lTroll &8- &7Applies drunk effect to player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'DRUNK'
+      28:
+        material: MAP
+        displayname: '&9&l&9&lTroll &8- &7Sends fake join message to player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'FAKE_JOIN'
+      29:
+        material: CHEST
+        displayname: '&9&l&9&lTroll &8- &7Opens players inventory'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'OPEN_INVENTORY'
+      30:
+        material: PUMPKIN
+        displayname: '&9&l&9&lTroll &8- &7Put on pumpkin on trolled player''s head'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'PUT_ON_PUMPKIN'
+      31:
+        material: SLIME_BALL
+        displayname: '&9&l&9&lTroll &8- &7Spawns a slime near player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'SLIME'
+      32:
+        material: MINECART
+        displayname: '&9&l&9&lTroll &8- &7Place rail near player, and invite him to fun.'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'MINECART'
+      33:
+        material: BOOK
+        displayname: '&9&l&9&lTroll &8- &7Gives player a book with code for hacker sword (with hidden fire aspect)'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'HACKER_CODE'
+      34:
+        material: POTION
+        displayname: '&9&l&9&lTroll &8- &7Gives player random potion effect'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'RANDOM_POTION_EFFECT'
+      35:
+        material: GLASS
+        displayname: '&9&l&9&lTroll &8- &7Gives player glass block, but player can''t drop it'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'DROP_GLASS'
+      36:
+        material: DIAMOND
+        displayname: '&9&l&9&lTroll &8- &7Gives player reward from admin :)'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'ADMIN_REWARD'

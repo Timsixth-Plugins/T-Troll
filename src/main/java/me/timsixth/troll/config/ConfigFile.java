@@ -4,6 +4,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import me.timsixth.troll.TrollPlugin;
 import me.timsixth.troll.util.ChatUtil;
+import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.io.File;
 
 @Getter
 public class ConfigFile {
@@ -13,7 +16,6 @@ public class ConfigFile {
     @Getter(value = AccessLevel.NONE)
     private final Messages messages;
     private String permission;
-    private String guiName;
     private String fakeAdminFormat;
     private String fakeOpFormat;
     private float powerOfExplosion;
@@ -27,16 +29,22 @@ public class ConfigFile {
     private boolean victimMessage;
     private String itemRewardName;
 
-    public ConfigFile(TrollPlugin trollPlugin,Messages messages) {
+    private final File guisFile;
+    private final YamlConfiguration ymlGuis;
+
+    public ConfigFile(TrollPlugin trollPlugin, Messages messages) {
         this.trollPlugin = trollPlugin;
         this.messages = messages;
+
+        guisFile = createFile("guis.yml");
+        ymlGuis = YamlConfiguration.loadConfiguration(guisFile);
+
         loadSettings();
     }
 
-    private void loadSettings(){
+    private void loadSettings() {
         permission = trollPlugin.getConfig().getString("permission");
         powerOfExplosion = trollPlugin.getConfig().getInt("power_explosion");
-        guiName = ChatUtil.chatColor(trollPlugin.getConfig().getString("guiname"));
         fakeAdminFormat = ChatUtil.chatColor(trollPlugin.getConfig().getString("fakeadmin_format"));
         fakeOpFormat = ChatUtil.chatColor(trollPlugin.getConfig().getString("fakeop_format"));
         guiPrefix = ChatUtil.chatColor(trollPlugin.getConfig().getString("gui_prefix"));
@@ -49,9 +57,21 @@ public class ConfigFile {
         victimMessage = trollPlugin.getConfig().getBoolean("victimMessage");
         itemRewardName = ChatUtil.chatColor(trollPlugin.getConfig().getString("itemRewardName"));
     }
-    public void reloadConfig(){
+
+    public void reloadConfig() {
         trollPlugin.reloadConfig();
         loadSettings();
         messages.loadMessages();
+    }
+
+    private File createFile(String name) {
+        if (!trollPlugin.getDataFolder().exists()) {
+            trollPlugin.getDataFolder().mkdir();
+        }
+        File file = new File(trollPlugin.getDataFolder(), name);
+        if (!file.exists()) {
+            trollPlugin.saveResource(name, true);
+        }
+        return file;
     }
 }

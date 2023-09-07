@@ -1,5 +1,4 @@
 permission: 'timsixth.troll'
-guiname: '&9&lTimsixthTroll'
 fakeadmin_format: '&c&lAdmin &f{NICK} &8>> &7{MESSAGE}'
 fakeop_format: '&7[Console: Opped {NICK}]'
 power_explosion: 2

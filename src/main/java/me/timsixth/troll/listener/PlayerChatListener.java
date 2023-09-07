@@ -3,8 +3,8 @@ package me.timsixth.troll.listener;
 import lombok.RequiredArgsConstructor;
 import me.timsixth.troll.TrollPlugin;
 import me.timsixth.troll.config.ConfigFile;
-import me.timsixth.troll.manager.TrollManager;
-import me.timsixth.troll.model.Troll;
+import me.timsixth.troll.manager.TrollProcessManager;
+import me.timsixth.troll.model.TrollProcess;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -25,7 +25,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PlayerChatListener implements Listener {
 
-    private final TrollManager trollManager;
+    private final TrollProcessManager trollProcessManager;
     private final ConfigFile configFile;
     private final TrollPlugin trollPlugin;
 
@@ -33,11 +33,11 @@ public class PlayerChatListener implements Listener {
     private void onChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
         Inventory otherInventory = player.getInventory();
-        Optional<Troll> trollByVictimUuid = trollManager.getTrollByVictimUuid(player.getUniqueId());
+        Optional<TrollProcess> trollByVictimUuid = trollProcessManager.getTrollByVictimUuid(player.getUniqueId());
 
         if (!trollByVictimUuid.isPresent()) return;
 
-        Troll troll = trollByVictimUuid.get();
+        TrollProcess troll = trollByVictimUuid.get();
         if (event.getMessage().equalsIgnoreCase(troll.getTrolledUser().getHackerTrollCode())) {
 
             if (otherInventory.firstEmpty() == -1) {
@@ -64,7 +64,7 @@ public class PlayerChatListener implements Listener {
     }
 
     private ItemStack getSword() {
-        ItemStack sword = new ItemStack(Material.WOOD_SWORD, 1);
+        ItemStack sword = new ItemStack(Material.WOODEN_SWORD, 1);
         sword.addUnsafeEnchantment(Enchantment.FIRE_ASPECT, 2);
         ItemMeta meta = sword.getItemMeta();
         meta.setLore(Arrays.asList(configFile.getHackerTrollEnchantLoreLine(), "", configFile.getHackerTrollThirdLoreLine()));

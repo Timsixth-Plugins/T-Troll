@@ -1,8 +1,8 @@
 package me.timsixth.troll.listener;
 
 import lombok.RequiredArgsConstructor;
-import me.timsixth.troll.manager.TrollManager;
-import me.timsixth.troll.model.Troll;
+import me.timsixth.troll.manager.TrollProcessManager;
+import me.timsixth.troll.model.TrollProcess;
 import me.timsixth.troll.model.TrolledUserProperties;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,13 +14,13 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PlayerDropItemListener implements Listener {
 
-    private final TrollManager trollManager;
+    private final TrollProcessManager trollProcessManager;
 
     @EventHandler
     private void onDropItem(PlayerDropItemEvent event) {
         Player player = event.getPlayer();
 
-        Optional<Troll> trollByVictimUuid = trollManager.getTrollByVictimUuid(player.getUniqueId());
+        Optional<TrollProcess> trollByVictimUuid = trollProcessManager.getTrollByVictimUuid(player.getUniqueId());
 
         if (!trollByVictimUuid.isPresent()) return;
 
