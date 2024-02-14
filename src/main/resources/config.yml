@@ -71,3 +71,6 @@ messages:
   get_glass: '&7[ &9T-Troll &7] You have gotten glass block, but you can not drop glass them for 10 seconds'
   give_reward: '&7[ &9T-Troll &7] You have given reward to the trolled player'
   get_reward_from_admin: '&7[ &9T-Troll &7] You have gotten reward from the admin'
+  burn_player: '&7[ &9T-Troll &7] You have set player on fire'
+  made_hunger: '&7[ &9T-Troll &7] You have made hunger to player'
+  hit_player: '&7[ &9T-Troll &7] You have hit the player'

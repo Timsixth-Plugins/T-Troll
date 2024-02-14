@@ -7,8 +7,10 @@ import me.timsixth.troll.util.ChatUtil;
 
 @Getter
 public class Messages {
+
     @Getter(value = AccessLevel.NONE)
     private final TrollPlugin trollPlugin;
+
     private String correctUse;
     private String noPermission;
     private String blowup;
@@ -66,6 +68,9 @@ public class Messages {
     private String getGlassButCanNotDrop;
     private String giveRewardFromAdmin;
     private String getRewardFromAdmin;
+    private String burnPlayer;
+    private String madeHunger;
+    private String hitPlayer;
 
     public Messages(TrollPlugin trollPlugin) {
         this.trollPlugin = trollPlugin;
@@ -130,5 +135,8 @@ public class Messages {
         getGlassButCanNotDrop = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.get_glass"));
         giveRewardFromAdmin = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.give_reward"));
         getRewardFromAdmin = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.get_reward_from_admin"));
+        burnPlayer = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.burn_player"));
+        madeHunger = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.made_hunger"));
+        hitPlayer = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.hit_player"));
     }
 }

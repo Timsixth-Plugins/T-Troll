@@ -7,8 +7,8 @@ import me.timsixth.troll.command.TrollCommand;
 import me.timsixth.troll.config.ConfigFile;
 import me.timsixth.troll.config.Messages;
 import me.timsixth.troll.gui.ExecuteTrollAction;
-import me.timsixth.troll.manager.MenuManager;
 import me.timsixth.troll.listener.*;
+import me.timsixth.troll.manager.MenuManager;
 import me.timsixth.troll.manager.TrollManager;
 import me.timsixth.troll.manager.TrollProcessManager;
 import me.timsixth.troll.model.troll.*;
@@ -109,7 +109,10 @@ public class TrollPlugin extends JavaPlugin {
                 new TeleportUnderPlayerTroll(messages, configFile),
                 new WaterTroll(messages),
                 new WebTroll(messages),
-                new ZombieTroll(messages)
+                new ZombieTroll(messages),
+                new BurnTroll(messages),
+                new HitPlayerTroll(messages),
+                new HungerTroll(messages)
         );
     }
 }

@@ -264,3 +264,24 @@ guis:
           type: 'EXECUTE_TROLL'
           args:
             - 'ADMIN_REWARD'
+      37:
+        material: ROTTEN_FLESH
+        displayname: '&9&l&9&lTroll &8- &7Make hunger to player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'HUNGER'
+      38:
+        material: DIAMOND_SWORD
+        displayname: '&9&l&9&lTroll &8- &7Hit the player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'HIT'
+      39:
+        material: LAVA_BUCKET
+        displayname: '&9&l&9&lTroll &8- &7Burn the player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'BURN'
