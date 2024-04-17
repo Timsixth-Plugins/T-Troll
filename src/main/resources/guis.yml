@@ -285,3 +285,24 @@ guis:
           type: 'EXECUTE_TROLL'
           args:
             - 'BURN'
+      40:
+        material: JUNGLE_BOAT
+        displayname: '&9&l&9&lTroll &8- &7Pirate'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'PIRATE'
+      41:
+        material: BOW
+        displayname: '&9&l&9&lTroll &8- &7Give copier to the player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'COPIER'
+      42:
+        material: NAME_TAG
+        displayname: '&9&l&9&lTroll &8- &7Give lucky name tag to the player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'LUCKY_NAME_TAG'

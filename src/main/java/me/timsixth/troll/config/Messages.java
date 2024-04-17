@@ -71,6 +71,13 @@ public class Messages {
     private String burnPlayer;
     private String madeHunger;
     private String hitPlayer;
+    private String canNotBePirate;
+    private String youArePirate;
+    private String playerIsPirateNow;
+    private String givenCopier;
+    private String receivedCopier;
+    private String receivedLuckyNameTag;
+    private String givenLuckyNameTag;
 
     public Messages(TrollPlugin trollPlugin) {
         this.trollPlugin = trollPlugin;
@@ -138,5 +145,12 @@ public class Messages {
         burnPlayer = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.burn_player"));
         madeHunger = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.made_hunger"));
         hitPlayer = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.hit_player"));
+        canNotBePirate = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.you_can_not_be_pirate"));
+        youArePirate = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.you_are_pirate"));
+        playerIsPirateNow = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.player_is_pirate_now"));
+        givenCopier = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.given_copier"));
+        receivedCopier = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.received_copier"));
+        givenLuckyNameTag = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.given_lucky_name_tag"));
+        receivedLuckyNameTag = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.received_lucky_name_tag"));
     }
 }

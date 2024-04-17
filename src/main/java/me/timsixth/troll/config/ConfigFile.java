@@ -4,7 +4,10 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import me.timsixth.troll.TrollPlugin;
 import me.timsixth.troll.util.ChatUtil;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.inventory.ItemStack;
+import pl.timsixth.guilibrary.core.util.ItemBuilder;
 
 import java.io.File;
 
@@ -28,6 +31,8 @@ public class ConfigFile {
     private String hackerTrollBookContent;
     private boolean victimMessage;
     private String itemRewardName;
+    private ItemStack copier;
+    private ItemStack luckyNameTag;
 
     private final File guisFile;
     private final YamlConfiguration ymlGuis;
@@ -56,6 +61,15 @@ public class ConfigFile {
         hackerTrollBookContent = ChatUtil.chatColor(trollPlugin.getConfig().getString("hackertrollBook.content"));
         victimMessage = trollPlugin.getConfig().getBoolean("victimMessage");
         itemRewardName = ChatUtil.chatColor(trollPlugin.getConfig().getString("itemRewardName"));
+        copier = loadItem(Material.BOW, "copier");
+        luckyNameTag = loadItem(Material.NAME_TAG, "luckyNameTag");
+    }
+
+    private ItemStack loadItem(Material material, String primarySection) {
+        return new ItemBuilder(material)
+                .setLore(pl.timsixth.guilibrary.core.util.ChatUtil.chatColor(trollPlugin.getConfig().getStringList(primarySection + ".lore")))
+                .setName(ChatUtil.chatColor(trollPlugin.getConfig().getString(primarySection + ".displayName")))
+                .toItemStack();
     }
 
     public void reloadConfig() {

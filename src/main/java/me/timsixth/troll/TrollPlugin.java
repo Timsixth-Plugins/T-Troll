@@ -69,6 +69,9 @@ public class TrollPlugin extends JavaPlugin {
         pluginManager.registerEvents(new PlayerQuitListener(trollProcessManager), this);
         pluginManager.registerEvents(new PlayerVehicleListener(trollProcessManager, messages), this);
         pluginManager.registerEvents(new PlayerDropItemListener(trollProcessManager), this);
+        pluginManager.registerEvents(new EntityShootBowListener(configFile, this), this);
+        pluginManager.registerEvents(new EntityDamageByEntityListener(), this);
+        pluginManager.registerEvents(new PlayerInteractEnityListener(configFile), this);
     }
 
     private void registerTrolls() {
@@ -112,7 +115,10 @@ public class TrollPlugin extends JavaPlugin {
                 new ZombieTroll(messages),
                 new BurnTroll(messages),
                 new HitPlayerTroll(messages),
-                new HungerTroll(messages)
+                new HungerTroll(messages),
+                new PirateTroll(messages, configFile),
+                new LuckyNameTagTroll(messages, configFile),
+                new CopierTroll(messages, configFile)
         );
     }
 }
