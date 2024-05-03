@@ -89,3 +89,6 @@ messages:
   received_copier: '&7[ &9T-Troll &7] &aYou have received a copier'
   given_lucky_name_tag: '&7[ &9T-Troll &7] You have given a lucky name tag'
   received_lucky_name_tag: '&7[ &9T-Troll &7] &aYou have received a lucky name tag'
+  spawn_legendary_trader: '&7[ &9T-Troll &7] &7Legendary Trader has been spawned.'
+  name_of_legendary_trader: "&c&lLegendary Trader"
+  trader_boo_message: "&cBoo! Haha!"

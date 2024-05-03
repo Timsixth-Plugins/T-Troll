@@ -78,6 +78,9 @@ public class Messages {
     private String receivedCopier;
     private String receivedLuckyNameTag;
     private String givenLuckyNameTag;
+    private String spawnLegendaryTrader;
+    private String nameOfLegendaryTrader;
+    private String traderBooMessage;
 
     public Messages(TrollPlugin trollPlugin) {
         this.trollPlugin = trollPlugin;
@@ -152,5 +155,8 @@ public class Messages {
         receivedCopier = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.received_copier"));
         givenLuckyNameTag = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.given_lucky_name_tag"));
         receivedLuckyNameTag = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.received_lucky_name_tag"));
+        spawnLegendaryTrader = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.spawn_legendary_trader"));
+        nameOfLegendaryTrader = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.name_of_legendary_trader"));
+        traderBooMessage = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.trader_boo_message"));
     }
 }

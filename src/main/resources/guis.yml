@@ -306,3 +306,10 @@ guis:
           type: 'EXECUTE_TROLL'
           args:
             - 'LUCKY_NAME_TAG'
+      43:
+        material: EMERALD
+        displayname: '&9&l&9&lTroll &8- &7Spawns "Legendary Trader" near player (if rightclicked - it changed to Zombie Villager)'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'LEGENDARY_TRADER'

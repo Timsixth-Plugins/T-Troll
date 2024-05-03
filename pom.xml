@@ -6,7 +6,7 @@
 
     <groupId>me.timsixth</groupId>
     <artifactId>T-Troll</artifactId>
-    <version>1.17.0</version>
+    <version>1.18.0</version>
     <repositories>
         <repository>
             <id>spigot-repo</id>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>com.github.timsixth.T-GuiApi</groupId>
             <artifactId>core</artifactId>
-            <version>v2.0.0</version>
+            <version>v2.5.0</version>
         </dependency>
     </dependencies>
 

@@ -71,7 +71,7 @@ public class TrollPlugin extends JavaPlugin {
         pluginManager.registerEvents(new PlayerDropItemListener(trollProcessManager), this);
         pluginManager.registerEvents(new EntityShootBowListener(configFile, this), this);
         pluginManager.registerEvents(new EntityDamageByEntityListener(), this);
-        pluginManager.registerEvents(new PlayerInteractEnityListener(configFile), this);
+        pluginManager.registerEvents(new PlayerInteractEnityListener(messages,configFile), this);
     }
 
     private void registerTrolls() {
@@ -118,7 +118,8 @@ public class TrollPlugin extends JavaPlugin {
                 new HungerTroll(messages),
                 new PirateTroll(messages, configFile),
                 new LuckyNameTagTroll(messages, configFile),
-                new CopierTroll(messages, configFile)
+                new CopierTroll(messages, configFile),
+                new LegendaryTraderTroll(messages)
         );
     }
 }
