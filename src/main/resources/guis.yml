@@ -42,7 +42,7 @@ guis:
             - 'ROCKET_WITH_PLAYER'
       5:
         material: RED_DYE
-        displayname: '&9&l&9&lTroll &8-&7Give fake crash to player'
+        displayname: '&9&l&9&lTroll &8- &7Give fake crash to player'
         click_action:
           type: 'EXECUTE_TROLL'
           args:
