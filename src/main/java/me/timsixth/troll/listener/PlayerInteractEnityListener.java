@@ -23,10 +23,10 @@ public class PlayerInteractEnityListener implements Listener {
         Entity rightClicked = event.getRightClicked();
         if (!(rightClicked instanceof Mob)) return;
 
-        if(rightClicked.getCustomName().equals(messages.getNameOfLegendaryTrader())) {
-            Location loc2 = rightClicked.getLocation();
+        if(rightClicked.getCustomName() != null && rightClicked.getCustomName().equals(messages.getNameOfLegendaryTrader())) {
+            Location location = rightClicked.getLocation();
             ((Mob) rightClicked).setHealth(0);
-            Entity zombieVillager = (Entity) event.getPlayer().getLocation().getWorld().spawnEntity(loc2, EntityType.ZOMBIE_VILLAGER);
+            event.getPlayer().getLocation().getWorld().spawnEntity(location, EntityType.ZOMBIE_VILLAGER);
             event.getPlayer().sendMessage(messages.getTraderBooMessage());
         }
 
