@@ -81,6 +81,11 @@ public class Messages {
     private String spawnLegendaryTrader;
     private String nameOfLegendaryTrader;
     private String traderBooMessage;
+    private String replacedDiamondsOres;
+    private String youAreEnderman;
+    private String youAreNotEndermanNow;
+    private String endermanModeEnabled;
+    private String endermanModeDisabled;
 
     public Messages(TrollPlugin trollPlugin) {
         this.trollPlugin = trollPlugin;
@@ -158,5 +163,10 @@ public class Messages {
         spawnLegendaryTrader = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.spawn_legendary_trader"));
         nameOfLegendaryTrader = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.name_of_legendary_trader"));
         traderBooMessage = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.trader_boo_message"));
+        replacedDiamondsOres = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.replaced_diamonds_ores"));
+        youAreEnderman = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.you_are_enderman"));
+        youAreNotEndermanNow = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.you_are_not_enderman"));
+        endermanModeEnabled = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.enderman_mode_enabled"));
+        endermanModeDisabled = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.enderman_mode_disabled"));
     }
 }

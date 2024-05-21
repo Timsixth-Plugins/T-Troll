@@ -19,6 +19,7 @@ public class TrolledUserProperties {
     private float exp;
     private final ItemStack[] inventory;
     private final ItemStack[] armor;
+    private boolean enderman;
 
     public TrolledUserProperties() {
         inventory = new ItemStack[36];

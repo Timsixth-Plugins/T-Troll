@@ -92,3 +92,8 @@ messages:
   spawn_legendary_trader: '&7[ &9T-Troll &7] &7Legendary Trader has been spawned.'
   name_of_legendary_trader: "&c&lLegendary Trader"
   trader_boo_message: "&cBoo! Haha!"
+  replaced_diamonds_ores: '&7[ &9T-Troll &7] All diamonds ores has been replaced by lapis lazuli ores. &cThis action is irreversible'
+  you_are_enderman: '&aCongratulations! you are Enderman'
+  you_are_not_enderman: '&cFrom now you are not Enderman'
+  enderman_mode_enabled: '&7[ &9T-Troll &7] Enderman mode has been &aenabled'
+  enderman_mode_disabled: '&7[ &9T-Troll &7] Enderman mode has been &cdisabled'

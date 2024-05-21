@@ -11,15 +11,22 @@ import me.timsixth.troll.listener.*;
 import me.timsixth.troll.manager.MenuManager;
 import me.timsixth.troll.manager.TrollManager;
 import me.timsixth.troll.manager.TrollProcessManager;
+import me.timsixth.troll.model.TrollProcess;
+import me.timsixth.troll.model.TrolledUserProperties;
 import me.timsixth.troll.model.troll.*;
 import me.timsixth.troll.tabcompleter.AdminTrollCommandTabCompleter;
 import me.timsixth.troll.version.VersionChecker;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.timsixth.guilibrary.core.GUIApi;
 import pl.timsixth.guilibrary.core.manager.YAMLMenuManager;
 import pl.timsixth.guilibrary.core.model.action.custom.NoneClickAction;
+
+import java.util.Optional;
 
 @Getter
 public class TrollPlugin extends JavaPlugin {
@@ -60,6 +67,8 @@ public class TrollPlugin extends JavaPlugin {
         new Metrics(this, 19466);
 
         menuManager.load();
+
+        checkIsPlayerEnderman();
     }
 
     private void registerListeners() {
@@ -119,7 +128,32 @@ public class TrollPlugin extends JavaPlugin {
                 new PirateTroll(messages, configFile),
                 new LuckyNameTagTroll(messages, configFile),
                 new CopierTroll(messages, configFile),
-                new LegendaryTraderTroll(messages)
+                new LegendaryTraderTroll(messages),
+                new ChangeDiamondsOresTroll(messages),
+                new EndermanTroll(messages, configFile)
         );
+    }
+
+    private void checkIsPlayerEnderman() {
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
+
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                Optional<TrollProcess> trollProcessOptional = trollProcessManager.getTrollByVictimUuid(player.getUniqueId());
+
+                if (!trollProcessOptional.isPresent()) continue;
+
+                TrollProcess trollProcess = trollProcessOptional.get();
+                TrolledUserProperties trolledUser = trollProcess.getTrolledUser();
+
+                World world = player.getWorld();
+
+                if (trolledUser.isEnderman()) {
+                    if (player.getLocation().getBlock().getType() == Material.WATER || world.hasStorm()) {
+                        player.damage(1);
+                    }
+                }
+            }
+
+        },20, 0);
     }
 }

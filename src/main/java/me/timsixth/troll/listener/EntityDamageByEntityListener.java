@@ -12,7 +12,7 @@ public class EntityDamageByEntityListener implements Listener {
 
     @EventHandler
     private void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        if (!(event.getEntity() instanceof Player) && !(event.getDamager() instanceof Arrow)) return;
+        if (!(event.getEntity() instanceof Player) || !(event.getDamager() instanceof Arrow)) return;
 
         Arrow arrow = (Arrow) event.getDamager();
 

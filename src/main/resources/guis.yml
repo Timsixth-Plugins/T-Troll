@@ -313,3 +313,22 @@ guis:
           type: 'EXECUTE_TROLL'
           args:
             - 'LEGENDARY_TRADER'
+      44:
+        material: LAPIS_LAZULI
+        displayname: '&9&l&9&lTroll &8- &7Replaces all diamonds ores by lapis lazuli ores.'
+        lore:
+          - '&cThis action is irreversible'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'CHANGE_DIAMONDS'
+      45:
+        material: ENDER_PEARL
+        displayname: '&9&l&9&lTroll &8- &7Toggle enderman mode'
+        lore:
+          - '&7The player will get 16 ender pearls'
+          - '&7The player will get damage for water and rain'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'ENDERMAN'
