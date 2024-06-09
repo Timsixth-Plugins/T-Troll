@@ -332,3 +332,30 @@ guis:
           type: 'EXECUTE_TROLL'
           args:
             - 'ENDERMAN'
+      46:
+        material: BARRIER
+        displayname: '&9&l&9&lTroll &8- &7No Internet'
+        lore:
+          - '&7Kick Player For Having No Internet'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'NO_INTERNET'
+      47:
+        material: WITHER_SKELETON_SPAWN_EGG
+        displayname: '&9&l&9&lTroll &8- &7Warden Sound'
+        lore:
+          - '&7Play Warden Sound For Player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'WARDEN_SOUND'
+      48:
+        material: IRON_SWORD
+        displayname: '&9&l&9&lTroll &8- &7Lower Reach'
+        lore:
+          - '&7Lower The Reach of The Player to 1'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'LOWER_REACH'

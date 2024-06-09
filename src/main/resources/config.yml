@@ -97,3 +97,7 @@ messages:
   you_are_not_enderman: '&cFrom now you are not Enderman'
   enderman_mode_enabled: '&7[ &9T-Troll &7] Enderman mode has been &aenabled'
   enderman_mode_disabled: '&7[ &9T-Troll &7] Enderman mode has been &cdisabled'
+  no_internet: '&7[ &9T-Troll &7] Player Kicked for no internet'
+  warden_sound: '&7[ &9T-Troll &7] Played Warden Sound To Player'
+  lower_reach_enabled: '&7[ &9T-Troll &7] Lowered Players Reach'
+  lower_reach_disabled: '&7[ &9T-Troll &7] Reset Reach to Default for Player'
