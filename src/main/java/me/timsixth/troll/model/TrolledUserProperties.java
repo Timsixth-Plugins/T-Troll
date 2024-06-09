@@ -1,5 +1,6 @@
 package me.timsixth.troll.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -20,6 +21,7 @@ public class TrolledUserProperties {
     private final ItemStack[] inventory;
     private final ItemStack[] armor;
     private boolean enderman;
+    private boolean loweredReach;
 
     public TrolledUserProperties() {
         inventory = new ItemStack[36];

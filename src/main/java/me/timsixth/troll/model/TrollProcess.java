@@ -1,6 +1,7 @@
 package me.timsixth.troll.model;
 
 import lombok.Getter;
+import org.bukkit.Material;
 
 import java.util.UUID;
 

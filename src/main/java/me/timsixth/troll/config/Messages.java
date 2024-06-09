@@ -86,6 +86,10 @@ public class Messages {
     private String youAreNotEndermanNow;
     private String endermanModeEnabled;
     private String endermanModeDisabled;
+    private String noInternet;
+    private String wardenSound;
+    private String lowerReachEnabled;
+    private String lowerReachDisabled;
 
     public Messages(TrollPlugin trollPlugin) {
         this.trollPlugin = trollPlugin;
@@ -168,5 +172,12 @@ public class Messages {
         youAreNotEndermanNow = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.you_are_not_enderman"));
         endermanModeEnabled = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.enderman_mode_enabled"));
         endermanModeDisabled = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.enderman_mode_disabled"));
+        noInternet = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.no_internet"));
+        wardenSound = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.warden_sound"));
+        lowerReachEnabled = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.lower_reach_enabled"));
+        lowerReachDisabled = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.lower_reach_disabled"));
+
+
+
     }
 }

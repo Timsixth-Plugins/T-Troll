@@ -79,7 +79,7 @@ public class TrollPlugin extends JavaPlugin {
         pluginManager.registerEvents(new PlayerVehicleListener(trollProcessManager, messages), this);
         pluginManager.registerEvents(new PlayerDropItemListener(trollProcessManager), this);
         pluginManager.registerEvents(new EntityShootBowListener(configFile, this), this);
-        pluginManager.registerEvents(new EntityDamageByEntityListener(), this);
+        pluginManager.registerEvents(new EntityDamageByEntityListener(trollProcessManager), this);
         pluginManager.registerEvents(new PlayerInteractEnityListener(messages,configFile), this);
     }
 
@@ -130,7 +130,10 @@ public class TrollPlugin extends JavaPlugin {
                 new CopierTroll(messages, configFile),
                 new LegendaryTraderTroll(messages),
                 new ChangeDiamondsOresTroll(messages),
-                new EndermanTroll(messages, configFile)
+                new EndermanTroll(messages, configFile),
+                new NoInternetTroll(messages),
+                new WardenSoundTroll(messages),
+                new LowerReachTroll(messages)
         );
     }
 

@@ -1,6 +1,6 @@
 name: T-Troll
 version: '1.18.0'
-authors: [timsixth,Hopa2008,Oraniacz,Rigoletto]
+authors: [timsixth,Hopa2008,Oraniacz,Rigoletto, Diamond_Iq]
 main: me.timsixth.troll.TrollPlugin
 api-version: 1.13
 commands:
