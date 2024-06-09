@@ -1,6 +1,5 @@
 package me.timsixth.troll.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

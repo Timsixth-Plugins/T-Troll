@@ -176,8 +176,5 @@ public class Messages {
         wardenSound = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.warden_sound"));
         lowerReachEnabled = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.lower_reach_enabled"));
         lowerReachDisabled = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.lower_reach_disabled"));
-
-
-
     }
 }

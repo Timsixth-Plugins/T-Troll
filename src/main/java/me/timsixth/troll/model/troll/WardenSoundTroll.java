@@ -5,14 +5,10 @@ import me.timsixth.troll.config.Messages;
 import me.timsixth.troll.model.Troll;
 import me.timsixth.troll.model.TrolledUserProperties;
 import me.timsixth.troll.util.XSound;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
-
-import java.sql.SQLException;
 
 @RequiredArgsConstructor
 public class WardenSoundTroll implements Troll {
-
 
     private final Messages messages;
 
