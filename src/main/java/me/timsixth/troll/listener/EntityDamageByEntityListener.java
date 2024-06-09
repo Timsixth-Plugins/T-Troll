@@ -17,9 +17,9 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import java.util.Optional;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class EntityDamageByEntityListener implements Listener {
-    private TrollProcessManager trollProcessManager;
+    private final TrollProcessManager trollProcessManager;
 
 
     @EventHandler

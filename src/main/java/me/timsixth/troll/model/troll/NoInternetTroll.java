@@ -9,13 +9,11 @@ import org.bukkit.entity.Player;
 @RequiredArgsConstructor
 public class NoInternetTroll implements Troll {
 
-
     private final Messages messages;
 
     @Override
     public void executeTroll(Player other, Player sender, TrolledUserProperties userProperties) {
         other.kickPlayer("Internal Exception: java.net.SocketException: Connection reset");
-
         sender.sendMessage(messages.getNoInternet());
     }
 
