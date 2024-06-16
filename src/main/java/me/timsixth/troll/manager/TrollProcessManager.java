@@ -20,7 +20,12 @@ public class TrollProcessManager {
     private final List<TrollProcess> trolls = new ArrayList<>();
 
     public void createNewTroll(TrollProcess troll) {
-        if (trolls.contains(troll)) return;
+        Optional<TrollProcess> trollProcessOptional = getTrollByVictimUuid(troll.getVictimUuid());
+
+        if (trollProcessOptional.isPresent()) return;
+
+        getTrollBySenderUuid(troll.getSenderUuid())
+                .ifPresent(trolls::remove);
 
         trolls.add(troll);
     }
