@@ -7,7 +7,11 @@ import me.timsixth.troll.model.TrolledUserProperties;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 @RequiredArgsConstructor
 public class TrollProcessManager {
 
@@ -15,34 +19,42 @@ public class TrollProcessManager {
 
     private final List<TrollProcess> trolls = new ArrayList<>();
 
-    public void createNewTroll(TrollProcess troll){
+    public void createNewTroll(TrollProcess troll) {
+        Optional<TrollProcess> trollProcessOptional = getTrollByVictimUuid(troll.getVictimUuid());
+
+        if (trollProcessOptional.isPresent()) return;
+
+        getTrollBySenderUuid(troll.getSenderUuid())
+                .ifPresent(trolls::remove);
+
         trolls.add(troll);
     }
-    public void removeTroll(TrollProcess troll){
+
+    public void removeTroll(TrollProcess troll) {
         trolls.remove(troll);
     }
 
-    public Optional<TrollProcess> getTrollBySenderUuid(UUID uuid){
+    public Optional<TrollProcess> getTrollBySenderUuid(UUID uuid) {
         return trolls.stream()
                 .filter(troll -> troll.getSenderUuid().equals(uuid))
                 .findAny();
     }
-    public Optional<TrollProcess> getTrollByVictimUuid(UUID uuid){
+
+    public Optional<TrollProcess> getTrollByVictimUuid(UUID uuid) {
         return trolls.stream()
                 .filter(trolledUser -> trolledUser.getVictimUuid().equals(uuid))
                 .findAny();
     }
 
-
     public void fakeInventoryClear(Player player) {
         Optional<TrollProcess> trollByVictimUuid = getTrollByVictimUuid(player.getUniqueId());
-        if (!trollByVictimUuid.isPresent()){
+        if (!trollByVictimUuid.isPresent()) {
             return;
         }
 
         TrolledUserProperties trolledUserProperties = trollByVictimUuid.get().getTrolledUser();
 
-        for(int i = 0; i <= 35; ++i) {
+        for (int i = 0; i <= 35; ++i) {
             trolledUserProperties.getInventory()[i] = player.getInventory().getItem(i);
         }
         trolledUserProperties.getArmor()[0] = player.getInventory().getHelmet();
@@ -59,7 +71,7 @@ public class TrollProcessManager {
         new BukkitRunnable() {
             @Override
             public void run() {
-                for(int j = 0; j <= 35; ++j) {
+                for (int j = 0; j <= 35; ++j) {
                     player.getInventory().setItem(j, trolledUserProperties.getInventory()[j]);
                 }
 

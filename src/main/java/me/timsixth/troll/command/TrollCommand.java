@@ -39,10 +39,9 @@ public class TrollCommand implements CommandExecutor {
             } else if (args.length == 1) {
                 Player other = Bukkit.getPlayerExact(args[0]);
 
-                Optional<TrollProcess> trollBySenderUuid = trollProcessManager.getTrollBySenderUuid(player.getUniqueId());
-                trollBySenderUuid.ifPresent(trollProcessManager::removeTroll);
                 if (other != null) {
                     trollProcessManager.createNewTroll(new TrollProcess(player.getUniqueId(), other.getUniqueId()));
+
                     Optional<Menu> menuOptional = menuManager.getMenuByName("trollsGui");
 
                     if (!menuOptional.isPresent()) return true;

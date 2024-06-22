@@ -14,6 +14,7 @@ public class NoInternetTroll implements Troll {
     @Override
     public void executeTroll(Player other, Player sender, TrolledUserProperties userProperties) {
         other.kickPlayer("Internal Exception: java.net.SocketException: Connection reset");
+
         sender.sendMessage(messages.getNoInternet());
     }
 
