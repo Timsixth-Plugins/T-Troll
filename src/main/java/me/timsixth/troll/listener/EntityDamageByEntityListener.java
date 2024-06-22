@@ -42,13 +42,11 @@ public class EntityDamageByEntityListener implements Listener {
             Player player = (Player) event.getDamager();
             Optional<TrollProcess> trollProcessOptional = trollProcessManager.getTrollByVictimUuid(player.getUniqueId());
 
-
             if (!trollProcessOptional.isPresent()) return;
 
             TrollProcess trollProcess = trollProcessOptional.get();
             TrolledUserProperties trolledUser = trollProcess.getTrolledUser();
-
-
+            
             if (trolledUser.isLoweredReach()) {
                 if (player.getLocation().distance(event.getEntity().getLocation()) > 1.5) event.setCancelled(true);
             }

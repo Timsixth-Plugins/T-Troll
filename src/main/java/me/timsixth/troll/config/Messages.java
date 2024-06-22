@@ -90,6 +90,10 @@ public class Messages {
     private String wardenSound;
     private String lowerReachEnabled;
     private String lowerReachDisabled;
+    private String explosiveAppleMessage;
+    private String enableGravity;
+    private String disableGravity;
+    private String meteor;
 
     public Messages(TrollPlugin trollPlugin) {
         this.trollPlugin = trollPlugin;
@@ -176,8 +180,9 @@ public class Messages {
         wardenSound = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.warden_sound"));
         lowerReachEnabled = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.lower_reach_enabled"));
         lowerReachDisabled = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.lower_reach_disabled"));
-
-
-
+        explosiveAppleMessage = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.explosive_apple_message"));
+        enableGravity = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.enable_gravity_message"));
+        disableGravity = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.disable_gravity_message"));
+        meteor = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.meteor_message"));
     }
 }
