@@ -22,9 +22,7 @@ luckyNameTag:
   lore:
     - ''
 explosiveApplePower: 3 #The Power Of The Explosion
-explosiveAppleVictimMessage:
-  enabled: true
-  message: '&d&lThat was an explosive apple'
+
 messages:
   admin_correct_use: '&7[ &9T-Troll &7] &cCorrect use: /atroll reload'
   correctuse: '&7[ &9T-Troll &7] &cCorrect use: /troll <player>'

@@ -376,7 +376,7 @@ guis:
         click_action:
           type: 'EXECUTE_TROLL'
           args:
-            - 'TOGGLE GRAVITY'
+            - 'TOGGLE_GRAVITY'
       51:
         material: FIRE_CHARGE
         displayname: '&9&l&9&lTroll &8- &7Meteor'

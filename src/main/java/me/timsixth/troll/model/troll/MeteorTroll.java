@@ -20,6 +20,8 @@ public class MeteorTroll implements Troll {
         fireball.setYield(8);
         fireball.setIsIncendiary(true);
         fireball.setFireTicks(0);
+
+        sender.sendMessage(messages.getMeteor());
     }
 
     @Override

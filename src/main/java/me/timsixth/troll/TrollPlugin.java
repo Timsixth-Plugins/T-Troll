@@ -81,7 +81,7 @@ public class TrollPlugin extends JavaPlugin {
         pluginManager.registerEvents(new EntityShootBowListener(configFile, this), this);
         pluginManager.registerEvents(new EntityDamageByEntityListener(trollProcessManager), this);
         pluginManager.registerEvents(new PlayerInteractEnityListener(messages,configFile), this);
-        pluginManager.registerEvents(new PlayerEatListener(this), this);
+        pluginManager.registerEvents(new PlayerEatListener(this, configFile), this);
     }
 
     private void registerTrolls() {

@@ -10,6 +10,11 @@ import org.bukkit.inventory.ItemStack;
 import pl.timsixth.guilibrary.core.util.ItemBuilder;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 @Getter
 public class ConfigFile {
@@ -33,6 +38,7 @@ public class ConfigFile {
     private String itemRewardName;
     private ItemStack copier;
     private ItemStack luckyNameTag;
+    private float explosiveAppleExplosionPower;
 
     private final File guisFile;
     private final YamlConfiguration ymlGuis;
@@ -42,7 +48,7 @@ public class ConfigFile {
         this.messages = messages;
 
         guisFile = createFile("guis.yml");
-        ymlGuis = YamlConfiguration.loadConfiguration(guisFile);
+        ymlGuis = loadYaml(guisFile);
 
         loadSettings();
     }
@@ -63,6 +69,7 @@ public class ConfigFile {
         itemRewardName = ChatUtil.chatColor(trollPlugin.getConfig().getString("itemRewardName"));
         copier = loadItem(Material.BOW, "copier");
         luckyNameTag = loadItem(Material.NAME_TAG, "luckyNameTag");
+        explosiveAppleExplosionPower = (float) trollPlugin.getConfig().getDouble("explosiveApplePower", 3);
     }
 
     private ItemStack loadItem(Material material, String primarySection) {
@@ -87,5 +94,28 @@ public class ConfigFile {
             trollPlugin.saveResource(name, true);
         }
         return file;
+    }
+
+    private YamlConfiguration loadYaml(File file) {
+        YamlConfiguration ymlFile = YamlConfiguration.loadConfiguration(file);
+
+        Reader reader = new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(file.getName())), StandardCharsets.UTF_8);
+
+        YamlConfiguration defaultYamlFile = YamlConfiguration.loadConfiguration(reader);
+        ymlFile.setDefaults(defaultYamlFile);
+
+        ymlFile.options().copyDefaults(true);
+
+        save(ymlFile, file);
+
+        return ymlFile;
+    }
+
+    private void save(YamlConfiguration yamlConfiguration, File file){
+        try {
+            yamlConfiguration.save(file);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

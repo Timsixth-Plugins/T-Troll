@@ -19,6 +19,6 @@ public class ToggleGravityTroll implements Troll {
 
     @Override
     public String getName() {
-        return "TOGGLE GRAVITY";
+        return "TOGGLE_GRAVITY";
     }
 }
