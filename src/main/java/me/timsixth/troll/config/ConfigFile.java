@@ -38,6 +38,7 @@ public class ConfigFile {
     private String itemRewardName;
     private ItemStack copier;
     private ItemStack luckyNameTag;
+    private float explosiveAppleExplosionPower;
 
     private final File guisFile;
     private final YamlConfiguration ymlGuis;
@@ -68,6 +69,7 @@ public class ConfigFile {
         itemRewardName = ChatUtil.chatColor(trollPlugin.getConfig().getString("itemRewardName"));
         copier = loadItem(Material.BOW, "copier");
         luckyNameTag = loadItem(Material.NAME_TAG, "luckyNameTag");
+        explosiveAppleExplosionPower = (float) trollPlugin.getConfig().getDouble("explosiveApplePower", 3);
     }
 
     private ItemStack loadItem(Material material, String primarySection) {

@@ -21,6 +21,8 @@ luckyNameTag:
   displayName: '&aLucky name tag'
   lore:
     - ''
+explosiveApplePower: 3 #The Power Of The Explosion
+
 messages:
   admin_correct_use: '&7[ &9T-Troll &7] &cCorrect use: /atroll reload'
   correctuse: '&7[ &9T-Troll &7] &cCorrect use: /troll <player>'
@@ -101,3 +103,7 @@ messages:
   warden_sound: '&7[ &9T-Troll &7] Played Warden Sound To Player'
   lower_reach_enabled: '&7[ &9T-Troll &7] Lowered Players Reach'
   lower_reach_disabled: '&7[ &9T-Troll &7] Reset Reach to Default for Player'
+  explosive_apple_message: '&7[ &9T-Troll &7] Gave Explosive Apple To Player'
+  enable_gravity_message: '&7[ &9T-Troll &7] Enabled Gravity For Player'
+  disable_gravity_message: '&7[ &9T-Troll &7] Disabled Gravity For Player'
+  meteor_message: '&7[ &9T-Troll &7] Summoned a meteorite above the player'

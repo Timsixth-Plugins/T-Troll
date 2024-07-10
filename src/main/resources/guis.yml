@@ -359,3 +359,30 @@ guis:
           type: 'EXECUTE_TROLL'
           args:
             - 'LOWER_REACH'
+      49:
+        material: ENCHANTED_GOLDEN_APPLE
+        displayname: '&9&l&9&lTroll &8- &7Explosive Apple'
+        lore:
+          - '&7Gives Player An Explosive Golden Apple that explodes when consumed'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'EXPLOSIVE_APPLE'
+      50:
+        material: FEATHER
+        displayname: '&9&l&9&lTroll &8- &7Toggle Gravity'
+        lore:
+          - '&7Toggles the gravity of the player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'TOGGLE_GRAVITY'
+      51:
+        material: FIRE_CHARGE
+        displayname: '&9&l&9&lTroll &8- &7Meteor'
+        lore:
+          - '&7Summons a Meteorite above the player'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'METEOR'
