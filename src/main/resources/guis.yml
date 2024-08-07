@@ -315,7 +315,7 @@ guis:
             - 'LEGENDARY_TRADER'
       44:
         material: LAPIS_LAZULI
-        displayname: '&9&l&9&lTroll &8- &7Replaces all diamonds ores by lapis lazuli ores.'
+        displayname: '&9&l&9&lTroll &8- &7Replaces all diamonds ores by lapis lazuli ores in player inventory.'
         lore:
           - '&cThis action is irreversible'
         click_action:
