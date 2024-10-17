@@ -22,7 +22,10 @@ luckyNameTag:
   lore:
     - ''
 explosiveApplePower: 3 #The Power Of The Explosion
-
+hotPotato:
+  displayName: '&cHot potato'
+  lore:
+    - '&7Throw it after it explodes'
 messages:
   admin_correct_use: '&7[ &9T-Troll &7] &cCorrect use: /atroll reload'
   correctuse: '&7[ &9T-Troll &7] &cCorrect use: /troll <player>'
@@ -107,3 +110,8 @@ messages:
   enable_gravity_message: '&7[ &9T-Troll &7] Enabled Gravity For Player'
   disable_gravity_message: '&7[ &9T-Troll &7] Disabled Gravity For Player'
   meteor_message: '&7[ &9T-Troll &7] Summoned a meteorite above the player'
+  give_hot_potato: '&7[ &9T-Troll &7] You have given hot potato to the player'
+  swap_lave_water_enabled: '&7[ &9T-Troll &7] You have change water to lava '
+  swap_lave_water_disabled: '&7[ &9T-Troll &7] You have change water from lava'
+  one_heart_enabled: '&7[ &9T-Troll &7] You have enabled one heart mode for the player'
+  one_heart_disabled: '&7[ &9T-Troll &7] You have disabled one heart mode for the player'

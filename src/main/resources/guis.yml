@@ -1,6 +1,6 @@
 guis:
   trollsGui:
-    displayname: '&9&lTimsixthTroll'
+    displayname: '&9&lTimsixthTroll #1'
     size: 54
     empty_slots:
       material: BLACK_STAINED_GLASS_PANE
@@ -257,63 +257,77 @@ guis:
           type: 'EXECUTE_TROLL'
           args:
             - 'DROP_GLASS'
-      36:
+      53:
+        material: FEATHER
+        displayname: '&aMove to next page'
+        lore: []
+        click_action:
+          type: 'OPEN_MENU'
+          args:
+            - 'trollsGuiPage2'
+  trollsGuiPage2:
+    displayname: '&9&lTimsixthTroll #2'
+    size: 54
+    empty_slots:
+      material: BLACK_STAINED_GLASS_PANE
+    slots:
+      0:
         material: DIAMOND
         displayname: '&9&l&9&lTroll &8- &7Gives player reward from admin :)'
         click_action:
           type: 'EXECUTE_TROLL'
           args:
             - 'ADMIN_REWARD'
-      37:
+      1:
         material: ROTTEN_FLESH
         displayname: '&9&l&9&lTroll &8- &7Make hunger to player'
         click_action:
           type: 'EXECUTE_TROLL'
           args:
             - 'HUNGER'
-      38:
+      2:
         material: DIAMOND_SWORD
         displayname: '&9&l&9&lTroll &8- &7Hit the player'
         click_action:
           type: 'EXECUTE_TROLL'
           args:
             - 'HIT'
-      39:
+      3:
         material: LAVA_BUCKET
         displayname: '&9&l&9&lTroll &8- &7Burn the player'
         click_action:
           type: 'EXECUTE_TROLL'
           args:
             - 'BURN'
-      40:
+      4:
         material: JUNGLE_BOAT
         displayname: '&9&l&9&lTroll &8- &7Pirate'
         click_action:
           type: 'EXECUTE_TROLL'
           args:
             - 'PIRATE'
-      41:
+      5:
         material: BOW
         displayname: '&9&l&9&lTroll &8- &7Give copier to the player'
         click_action:
           type: 'EXECUTE_TROLL'
           args:
             - 'COPIER'
-      42:
+      6:
         material: NAME_TAG
         displayname: '&9&l&9&lTroll &8- &7Give lucky name tag to the player'
         click_action:
           type: 'EXECUTE_TROLL'
           args:
             - 'LUCKY_NAME_TAG'
-      43:
+      7:
         material: EMERALD
         displayname: '&9&l&9&lTroll &8- &7Spawns "Legendary Trader" near player (if rightclicked - it changed to Zombie Villager)'
         click_action:
           type: 'EXECUTE_TROLL'
           args:
             - 'LEGENDARY_TRADER'
-      44:
+      8:
         material: LAPIS_LAZULI
         displayname: '&9&l&9&lTroll &8- &7Replaces all diamonds ores by lapis lazuli ores in player inventory.'
         lore:
@@ -322,7 +336,7 @@ guis:
           type: 'EXECUTE_TROLL'
           args:
             - 'CHANGE_DIAMONDS'
-      45:
+      9:
         material: ENDER_PEARL
         displayname: '&9&l&9&lTroll &8- &7Toggle enderman mode'
         lore:
@@ -332,7 +346,7 @@ guis:
           type: 'EXECUTE_TROLL'
           args:
             - 'ENDERMAN'
-      46:
+      10:
         material: BARRIER
         displayname: '&9&l&9&lTroll &8- &7No Internet'
         lore:
@@ -341,7 +355,7 @@ guis:
           type: 'EXECUTE_TROLL'
           args:
             - 'NO_INTERNET'
-      47:
+      11:
         material: WITHER_SKELETON_SPAWN_EGG
         displayname: '&9&l&9&lTroll &8- &7Warden Sound'
         lore:
@@ -350,7 +364,7 @@ guis:
           type: 'EXECUTE_TROLL'
           args:
             - 'WARDEN_SOUND'
-      48:
+      12:
         material: IRON_SWORD
         displayname: '&9&l&9&lTroll &8- &7Lower Reach'
         lore:
@@ -359,7 +373,7 @@ guis:
           type: 'EXECUTE_TROLL'
           args:
             - 'LOWER_REACH'
-      49:
+      13:
         material: ENCHANTED_GOLDEN_APPLE
         displayname: '&9&l&9&lTroll &8- &7Explosive Apple'
         lore:
@@ -368,7 +382,7 @@ guis:
           type: 'EXECUTE_TROLL'
           args:
             - 'EXPLOSIVE_APPLE'
-      50:
+      14:
         material: FEATHER
         displayname: '&9&l&9&lTroll &8- &7Toggle Gravity'
         lore:
@@ -377,7 +391,7 @@ guis:
           type: 'EXECUTE_TROLL'
           args:
             - 'TOGGLE_GRAVITY'
-      51:
+      15:
         material: FIRE_CHARGE
         displayname: '&9&l&9&lTroll &8- &7Meteor'
         lore:
@@ -386,3 +400,39 @@ guis:
           type: 'EXECUTE_TROLL'
           args:
             - 'METEOR'
+      16:
+        material: POTATO
+        displayname: '&9&l&9&lTroll &8- &7Hot potato'
+        lore:
+          - '&7Gives player hot potato'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'HOT_POTATO'
+      17:
+        material: LAVA_BUCKET
+        displayname: '&9&l&9&lTroll &8- &7Swaps lava water'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'SWAP_LAVA_WATER'
+      18:
+        material: REDSTONE
+        displayname: '&9&l&9&lTroll &8- &7Changes health to one heart'
+        click_action:
+          type: 'EXECUTE_TROLL'
+          args:
+            - 'ONE_HEART'
+      52:
+        material: FEATHER
+        displayname: '&aMove to previous page'
+        click_action:
+          type: 'OPEN_MENU'
+          args:
+            - 'trollsGui'
+      53:
+        material: FEATHER
+        displayname: '&aMove to next page'
+        click_action:
+          type: 'NONE'
+          args: [ ]

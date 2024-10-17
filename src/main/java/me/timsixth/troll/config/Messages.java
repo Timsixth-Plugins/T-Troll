@@ -94,6 +94,11 @@ public class Messages {
     private String enableGravity;
     private String disableGravity;
     private String meteor;
+    private String givesHotPotato;
+    private String swapWaterToLava;
+    private String swapWaterFromLava;
+    private String oneHeartEnabled;
+    private String oneHeartDisabled;
 
     public Messages(TrollPlugin trollPlugin) {
         this.trollPlugin = trollPlugin;
@@ -184,6 +189,10 @@ public class Messages {
         enableGravity = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.enable_gravity_message"));
         disableGravity = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.disable_gravity_message"));
         meteor = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.meteor_message"));
-
+        givesHotPotato = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.give_hot_potato"));
+        swapWaterToLava = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.swap_lave_water_enabled"));
+        swapWaterFromLava = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.swap_lave_water_disabled"));
+        oneHeartEnabled = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.one_heart_enabled"));
+        oneHeartDisabled = ChatUtil.chatColor(trollPlugin.getConfig().getString("messages.one_heart_disabled"));
     }
 }

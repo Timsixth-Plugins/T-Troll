@@ -39,6 +39,7 @@ public class ConfigFile {
     private ItemStack copier;
     private ItemStack luckyNameTag;
     private float explosiveAppleExplosionPower;
+    private ItemStack hotPotato;
 
     private final File guisFile;
     private final YamlConfiguration ymlGuis;
@@ -70,6 +71,7 @@ public class ConfigFile {
         copier = loadItem(Material.BOW, "copier");
         luckyNameTag = loadItem(Material.NAME_TAG, "luckyNameTag");
         explosiveAppleExplosionPower = (float) trollPlugin.getConfig().getDouble("explosiveApplePower", 3);
+        hotPotato = loadItem(Material.POTATO, "hotPotato");
     }
 
     private ItemStack loadItem(Material material, String primarySection) {

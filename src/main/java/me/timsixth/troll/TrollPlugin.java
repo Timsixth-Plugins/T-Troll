@@ -7,26 +7,23 @@ import me.timsixth.troll.command.TrollCommand;
 import me.timsixth.troll.config.ConfigFile;
 import me.timsixth.troll.config.Messages;
 import me.timsixth.troll.gui.ExecuteTrollAction;
+import me.timsixth.troll.gui.OpenMenuAction;
 import me.timsixth.troll.listener.*;
 import me.timsixth.troll.manager.MenuManager;
 import me.timsixth.troll.manager.TrollManager;
 import me.timsixth.troll.manager.TrollProcessManager;
-import me.timsixth.troll.model.TrollProcess;
-import me.timsixth.troll.model.TrolledUserProperties;
 import me.timsixth.troll.model.troll.*;
 import me.timsixth.troll.tabcompleter.AdminTrollCommandTabCompleter;
+import me.timsixth.troll.task.CheckIsPlayerEndermanTask;
+import me.timsixth.troll.task.CheckPlayerHasHotPotato;
+import me.timsixth.troll.task.CheckPlayerHasSwappedWaterTask;
 import me.timsixth.troll.version.VersionChecker;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.timsixth.guilibrary.core.GUIApi;
 import pl.timsixth.guilibrary.core.manager.YAMLMenuManager;
 import pl.timsixth.guilibrary.core.model.action.custom.NoneClickAction;
-
-import java.util.Optional;
 
 @Getter
 public class TrollPlugin extends JavaPlugin {
@@ -35,6 +32,7 @@ public class TrollPlugin extends JavaPlugin {
     private TrollProcessManager trollProcessManager;
     private Messages messages;
     private ConfigFile configFile;
+    private YAMLMenuManager menuManager;
 
     @Override
     public void onEnable() {
@@ -49,9 +47,9 @@ public class TrollPlugin extends JavaPlugin {
         trollProcessManager = new TrollProcessManager(this);
         trollManager = new TrollManager();
 
-        YAMLMenuManager menuManager = new MenuManager(guiApi.getActionRegistration(), configFile);
+        menuManager = new MenuManager(guiApi.getActionRegistration(), configFile);
 
-        guiApi.getActionRegistration().register(new NoneClickAction(), new ExecuteTrollAction());
+        guiApi.getActionRegistration().register(new NoneClickAction(), new ExecuteTrollAction(), new OpenMenuAction());
         guiApi.setMenuManager(menuManager);
 
         getCommand("troll").setExecutor(new TrollCommand(menuManager, trollProcessManager, messages, configFile));
@@ -68,7 +66,7 @@ public class TrollPlugin extends JavaPlugin {
 
         menuManager.load();
 
-        checkIsPlayerEnderman();
+        runTasks();
     }
 
     private void registerListeners() {
@@ -80,8 +78,8 @@ public class TrollPlugin extends JavaPlugin {
         pluginManager.registerEvents(new PlayerDropItemListener(trollProcessManager), this);
         pluginManager.registerEvents(new EntityShootBowListener(configFile, this), this);
         pluginManager.registerEvents(new EntityDamageByEntityListener(trollProcessManager), this);
-        pluginManager.registerEvents(new PlayerInteractEnityListener(messages,configFile), this);
-        pluginManager.registerEvents(new PlayerEatListener(this, configFile), this);
+        pluginManager.registerEvents(new PlayerInteractEnityListener(messages, configFile), this);
+        pluginManager.registerEvents(new PlayerEatListener(configFile), this);
     }
 
     private void registerTrolls() {
@@ -137,30 +135,17 @@ public class TrollPlugin extends JavaPlugin {
                 new LowerReachTroll(messages),
                 new ExplosiveAppleTroll(messages),
                 new ToggleGravityTroll(messages),
-                new MeteorTroll(messages)
+                new MeteorTroll(messages),
+                new HotPotatoTroll(configFile, messages),
+                new SwapLavaWaterTroll(messages),
+                new OneHeartTroll(messages)
         );
     }
 
-    private void checkIsPlayerEnderman() {
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
+    private void runTasks() {
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new CheckIsPlayerEndermanTask(trollProcessManager), 20, 0);
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new CheckPlayerHasSwappedWaterTask(trollProcessManager), 20, 0);
 
-            for (Player player : Bukkit.getOnlinePlayers()) {
-                Optional<TrollProcess> trollProcessOptional = trollProcessManager.getTrollByVictimUuid(player.getUniqueId());
-
-                if (!trollProcessOptional.isPresent()) continue;
-
-                TrollProcess trollProcess = trollProcessOptional.get();
-                TrolledUserProperties trolledUser = trollProcess.getTrolledUser();
-
-                World world = player.getWorld();
-
-                if (trolledUser.isEnderman()) {
-                    if (player.getLocation().getBlock().getType() == Material.WATER || world.hasStorm()) {
-                        player.damage(1);
-                    }
-                }
-            }
-
-        },20, 0);
+        new CheckPlayerHasHotPotato(configFile).runTaskTimer(this, 0, 10 * 20L);
     }
 }
