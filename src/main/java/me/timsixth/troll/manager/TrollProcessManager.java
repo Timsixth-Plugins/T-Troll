@@ -22,10 +22,18 @@ public class TrollProcessManager {
     public void createNewTroll(TrollProcess troll) {
         Optional<TrollProcess> trollProcessOptional = getTrollByVictimUuid(troll.getVictimUuid());
 
-        if (trollProcessOptional.isPresent()) return;
+        if (trollProcessOptional.isPresent()) {
+            TrollProcess trollProcess = trollProcessOptional.get();
+
+            if (trollProcess.isCached()) {
+                trollProcess.setCached(false);
+            }
+
+            return;
+        }
 
         getTrollBySenderUuid(troll.getSenderUuid())
-                .ifPresent(trolls::remove);
+                .ifPresent(trollProcess -> trollProcess.setCached(true));
 
         trolls.add(troll);
     }
@@ -36,6 +44,7 @@ public class TrollProcessManager {
 
     public Optional<TrollProcess> getTrollBySenderUuid(UUID uuid) {
         return trolls.stream()
+                .filter(troll -> !troll.isCached())
                 .filter(troll -> troll.getSenderUuid().equals(uuid))
                 .findAny();
     }
