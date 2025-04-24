@@ -74,7 +74,7 @@ public class TrollPlugin extends JavaPlugin {
         pluginManager.registerEvents(new PlayerChatListener(trollProcessManager, configFile, this), this);
         pluginManager.registerEvents(new PlayerMoveListener(trollProcessManager), this);
         pluginManager.registerEvents(new PlayerQuitListener(trollProcessManager), this);
-        pluginManager.registerEvents(new PlayerVehicleListener(trollProcessManager, messages), this);
+        pluginManager.registerEvents(new PlayerVehicleListener(trollProcessManager, messages, this), this);
         pluginManager.registerEvents(new PlayerDropItemListener(trollProcessManager), this);
         pluginManager.registerEvents(new EntityShootBowListener(configFile, this), this);
         pluginManager.registerEvents(new EntityDamageByEntityListener(trollProcessManager), this);

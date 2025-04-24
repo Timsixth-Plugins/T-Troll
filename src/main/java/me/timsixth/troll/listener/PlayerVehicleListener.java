@@ -1,11 +1,13 @@
 package me.timsixth.troll.listener;
 
 import lombok.RequiredArgsConstructor;
+import me.timsixth.troll.TrollPlugin;
 import me.timsixth.troll.config.Messages;
 import me.timsixth.troll.manager.TrollProcessManager;
 import me.timsixth.troll.model.TrollProcess;
-import me.timsixth.troll.util.XSound;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,24 +22,26 @@ public class PlayerVehicleListener implements Listener {
 
     private final TrollProcessManager trollProcessManager;
     private final Messages messages;
+    private final TrollPlugin trollPlugin;
 
     @EventHandler
     public void onVehicleEnter(VehicleEnterEvent event) {
-        if(event.getVehicle().getType().equals(EntityType.MINECART)){
+        if (event.getVehicle().getType().equals(EntityType.MINECART)) {
+            if (!(event.getEntered() instanceof Player)) return;
+
             Player player = (Player) event.getEntered();
 
             Optional<TrollProcess> trollByVictimUuid = trollProcessManager.getTrollByVictimUuid(player.getUniqueId());
 
-            if (!trollByVictimUuid.isPresent()) {
-                return;
-            }
+            if (!trollByVictimUuid.isPresent()) return;
+
             TrollProcess troll = trollByVictimUuid.get();
 
             if (troll.getTrolledUser().isMinecartTroll()) {
                 troll.getTrolledUser().setMinecartTroll(false);
                 player.sendMessage(messages.getMinecartDone());
-                player.getInventory().addItem(new ItemStack(Material.IRON_INGOT,1));
-                XSound.play(player.getLocation(),"CAT_MEOW");
+                player.getInventory().addItem(new ItemStack(Material.IRON_INGOT, 1));
+                Bukkit.getServer().getScheduler().runTask(trollPlugin, () -> player.getWorld().playSound(player.getLocation(), Sound.ENTITY_CAT_AMBIENT, 10, 2));
             }
         }
     }
